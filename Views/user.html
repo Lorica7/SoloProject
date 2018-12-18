@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Your Closet</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Cormorant|Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="../Public/css/main.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+
+    
+
+</head>
+
+<body>
+
+    <div id="home">
+        <div class="container">
+            <div class="jumbotron">
+                <h1 class="display-4">Saved Searches and User Settings</h1>
+                <p class="lead">Here you can update your user settings. You can also access your saved searches and
+                    favorite
+                    items
+                </p>
+                <hr class="my-4">
+                <a class="btn btn-info btn-lg float-right" href="/" role="button" id="toHome">Go Home</a>
+                <a class="btn btn-primary btn-lg float-right" href="/search" role="button" id="toSearch">Go To Search
+                    Page<a>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md">
+                    <h2 id="updateForm">Update Information</h2>
+                    <h5>Current User Information:</h5>
+                    <ul>
+                        <li>First Name:</li>
+                        <li>Last Name:</li>
+                        <li>email:</li>
+                        <li>Size Preference:</li>
+                        <li>Type Preference:</li>
+                    </ul>
+                    <div class="card-body">
+                        <form action="" method="POST" role="form">
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="firstName">First Name</label>
+                                        <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                                    </div>
+                                    <div class="col">
+                                        <label for="lastName">Last Name</label>
+                                        <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email (username)</label>
+                                <input type="text" class="form-control" id="email" placeholder="someone@example.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Old Password</label>
+                                <input type="text" class="form-control" id="passwordOld" placeholder="password">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">New Password</label>
+                                <input type="text" class="form-control" id="passwordNew" placeholder="password">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Confirm New Password</label>
+                                <input type="text" class="form-control" id="passwordConf" placeholder="password">
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="size">Size Preference</label>
+                                    <select id="size" class="form-control">
+                                        <option selected>Choose...</option>
+                                        <option>XSmall</option>
+                                        <option>Small</option>
+                                        <option>Medium</option>
+                                        <option>Large</option>
+                                        <option>XLarge</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="type">Type Preference</label>
+                                    <select id="type" class="form-control">
+                                        <option selected>Choose...</option>
+                                        <option>Junior Size</option>
+                                        <option>Petite</option>
+                                        <option>Tall</option>
+                                        <option>Plus Size</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                        </form>
+                        <br>
+                        <div class="text-right">
+                            <span class="updateUser">
+                                <button type="submit" class="btn btn-primary btn-md btn-info" id="updateUser">
+                                    Update Information</button></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <h2 id="savedDesplay">Saved Searches and Items</h2>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript" src="../Public/JS/index.js"></script>
+    <script type="text/javascript" src="../Public/JS/savedData.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+</body>
+
+
+</html>
