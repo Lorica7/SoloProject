@@ -13,8 +13,18 @@ $.ajax({
     
 })
 
-// headers: 
-// "X-RapidAPI-Key: mGAXU1Kko8mshyhZM8KdxuDte8T9p1LAU1ojsn83DcrRQBAIFs",
+http://webservices.amazon.com/onca/xml?
+Service=AWSECommerceService&
+AWSAccessKeyId=[AWS Access Key ID]&
+AssociateTag=[Associate Tag]&
+Operation=ItemSearch&
+Condition=All&
+Availability=Available&
+SearchIndex=Apparel&
+Keywords=Shirt
+&Timestamp=[YYYY-MM-DDThh:mm:ssZ]
+&Signature=[Request Signature]
+
 
 
 // $.get("/api/all", function(data) {
