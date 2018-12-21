@@ -10,9 +10,10 @@ $("#updateUser").on("click", function(event) {
       firstName: $("#firstName").val().trim(),
       lastName: $("#lastName").val().trim(),
       email: $("#email").val().trim(),
-      password: $("#passwordNew").val().trim(),
-      
-      type: $("#type").val().trim()
+      passwordNew: $("#passwordNew").val().trim(),
+      passwordOld: $("#passwordOld").val().trim(),
+      size: $("#size").val(),
+      type: $("#type").val()
     };
   
     
@@ -32,7 +33,7 @@ $("#updateUser").on("click", function(event) {
     $("#passwordNew").val("");
     $("#passwordOld").val("");
     $("#passwordConf").val("");
-  
+    $("#size").val("");
     $("#type").val("");
 
   });

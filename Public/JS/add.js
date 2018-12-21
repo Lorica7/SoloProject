@@ -21,7 +21,7 @@ $("#createUser").on("click", function(event) {
     $("#lastName").val("");
     $("#email").val("");
     $("#password").val("");
-  
+    
     $("#type").val(""); 
 
 });

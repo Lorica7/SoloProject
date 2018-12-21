@@ -78,13 +78,17 @@ module.exports = function(app) {
     console.log("User Data:");
     console.log(req.body);
     db.User.update({
-      firstName: req.body,
+      firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
       size: req.body.size,
       type: req.body.type,
-      password: req.body.password
-    
+      password: req.body.passwordNew,
+    },
+    {
+      where: {
+        password: req.body.passwordOld 
+      }, 
   }).then(function(results) {
       res.json(results);
     });
