@@ -75,9 +75,12 @@ module.exports = function(app) {
       where: {
         password: req.body.passwordOld 
       }, 
-  }).then(function(results) {
+  }).then(function(results,er) {
       res.json(results);
-    });
+    })
+    .catch(err => {
+      res.send('error: ' + err)
+    })
   });
 
 

@@ -1,4 +1,4 @@
-import  webContext from "../../keys";
+const webContext = require ("../../keys");
 
 var apikey = webContext.api_key;
 

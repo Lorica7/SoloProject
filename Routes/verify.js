@@ -32,8 +32,9 @@ module.exports = function (app) {
                     async function run() {
                         let password =req.body.password;
                         const salt = await bcrypt.genSalt(10);
+                        console.log(salt)
                         password = await bcrypt.hash(password, salt);
-                        console.log(`salted password? ${password}`)
+                        console.log(`hashed password? ${password}`)
                         return password;
                     }
                    run();
@@ -65,8 +66,8 @@ module.exports = function (app) {
         })
             .then(user => {
                 if (user) {
-                    if (bcrypt.compareSync(req.body.password, user.password)) {
-                        let token = jwt.sign(user.dataValues, secrets, {
+                    if (bcrypt.compareSync(req.body.password, db.User.password)) {
+                        let token = jwt.sign(bd.Useruser.dataValues, secrets, {
                             expiresIn: 1440
                         })
                         res.send(token)
