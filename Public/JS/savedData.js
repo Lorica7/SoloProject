@@ -16,7 +16,7 @@ $("#updateUser").on("click", function(event) {
     };
   
     
-      function update (updateUser) {
+     var updateFunc =  (updateUser)=> {
         $.ajax({
           method: "PUT",
           url: "/api/update",
@@ -24,7 +24,7 @@ $("#updateUser").on("click", function(event) {
         }).then(console.log(updateUser));
       }
     
-      update(updateUser);
+      updateFunc(updateUser);
  
     $("#firstName").val("");
     $("#lastName").val("");

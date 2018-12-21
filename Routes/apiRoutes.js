@@ -84,10 +84,7 @@ module.exports = function(app) {
       size: req.body.size,
       type: req.body.type,
       password: req.body.password
-    },  {
-      where: {
-        id: 1
-      }
+    
   }).then(function(results) {
       res.json(results);
     });
