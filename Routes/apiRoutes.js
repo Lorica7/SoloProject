@@ -58,21 +58,7 @@ module.exports = function(app) {
     });
   });
 
-  
-  // app.post("/api/new", function(req, res) {
-  //   console.log("User Data:");
-  //   console.log(req.body);
-  //   db.User.create({
-  //     firstName: req.body.firstName,
-  //     lastName: req.body.lastName,
-  //     email: req.body.email,
-  //     size: req.body.size,
-  //     type: req.body.type,
-  //     password: req.body.password
-  //   }).then(function(results) {
-  //     res.json(results);
-  //   });
-  // });
+ 
 
   app.put("/api/update", function(req, res) {
     console.log("User Data:");

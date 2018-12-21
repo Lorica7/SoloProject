@@ -1,4 +1,4 @@
-import { webContext } from "../../keys";
+import  webContext from "../../keys";
 
 var apikey = webContext.api_key;
 

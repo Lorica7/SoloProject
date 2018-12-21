@@ -12,3 +12,7 @@ exports.users_db = {
     username: process.env.db_username,
     password: process.env.db_password
 }
+
+// exports.JWtoken = {
+//   "jwtPrivateKey": "vidly_jwtPrivateKey"
+// }
