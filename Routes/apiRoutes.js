@@ -1,6 +1,5 @@
 var db = require("../Models");
 
-
 module.exports = function(app) {
   
   app.get("/api/garments", function(req, res) {
@@ -9,8 +8,6 @@ module.exports = function(app) {
       res.json(results);
     });
   });
-
-
 
 
   app.get("/api/user/:email", function(req, res) {
@@ -62,26 +59,26 @@ module.exports = function(app) {
   });
 
   
-  app.post("/api/new", function(req, res) {
-    console.log("User Data:");
-    console.log(req.body);
-    db.User.create({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      size: req.body.size,
-      type: req.body.type,
-      password: req.body.password
-    }).then(function(results) {
-      res.json(results);
-    });
-  });
+  // app.post("/api/new", function(req, res) {
+  //   console.log("User Data:");
+  //   console.log(req.body);
+  //   db.User.create({
+  //     firstName: req.body.firstName,
+  //     lastName: req.body.lastName,
+  //     email: req.body.email,
+  //     size: req.body.size,
+  //     type: req.body.type,
+  //     password: req.body.password
+  //   }).then(function(results) {
+  //     res.json(results);
+  //   });
+  // });
 
   app.put("/api/update", function(req, res) {
     console.log("User Data:");
     console.log(req.body);
     db.User.update({
-      firstName: req.body.firstName,
+      firstName: req.body,
       lastName: req.body.lastName,
       email: req.body.email,
       size: req.body.size,

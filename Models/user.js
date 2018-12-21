@@ -13,8 +13,6 @@ var User= sequelize.define("User", {
 
   type: DataTypes.STRING,
 
-  size: DataTypes.STRING,
-
   savedData: DataTypes.STRING
 });
 return User;
