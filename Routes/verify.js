@@ -4,6 +4,8 @@ const cors = require('cors')
 const bcrypt = require('bcrypt')
 const db = require("../Models");
 const expVal = require('express-validator');
+var Sequelize = require("sequelize");
+let passport = require('passport');
 app.use(cors());
 
 
@@ -21,7 +23,7 @@ module.exports = function (app) {
         }
  // Validation
 
-        const { firstName, lastName, email, password, type } = userInfo;
+       
 
         req.checkBody('firstName', "Field cannot be empty").notEmpty();
         req.checkBody('lastName', "Field cannot be empty").notEmpty();
@@ -52,19 +54,23 @@ module.exports = function (app) {
                         console.log(`hashed password? ${password}`)
                         return password;
                     }
-                    run();
+                    run().then(
+            
                     bcrypt.hash(password, 10, (err, hash) => {
-                        password = hash
+                    password = hash
                         db.User.create(userInfo)
                             .then(user => {
                                 console.log(password)
  // User created, getting user password
-                                sequelize.query("SELECT LAST_INSERT_ID() FROM `users`", 
-                                { type: sequelize.QueryTypes.SELECT })
+                                db.sequelize.query("SELECT LAST_INSERT_ID() as user_id FROM `users`", 
+                                { type: db.sequelize.QueryTypes.SELECT })
                                     .then((results, error, fields) => {  //might need to pass these arg in a callback
                                         if (error) throw error;
 
-                                        req.login(results[0]), function (err) {
+                                        const user_id = results[0]
+
+                                        console.log(results[0]);
+                                        req.login(user_id), function (err) {
                                             res.redirect('/');
                                         }
                                     })
@@ -72,10 +78,7 @@ module.exports = function (app) {
                                 // res.render('register', { title: "Registration Sucessful"})
                             })
  // Basic Error handling
-                    })
-                        .catch(err => {
-                            res.send('error: ' + err)
-                        })
+                    }))
                 }
                 else {
                     res.json({ error: "Invalid request" })
@@ -89,13 +92,13 @@ module.exports = function (app) {
 
 // Serialization with Passport
 
-    passport.serializeUser((user, done) => {
-        done(null, user.id);
+    passport.serializeUser((user_id, done) => {
+        done(null, user_id);
     });
 
-    passport.deserializeUser((id, done) =>{
-        User.findById(id,  (err, user)=> {   //this line might not be needed, causing problems?
-            done(err, user);
+    passport.deserializeUser((user_id, done) =>{
+        User.findById(user_id,  (err, user_id)=> {   //this line might not be needed, causing problems?
+            done(null, user_id);
         });
     });
 
