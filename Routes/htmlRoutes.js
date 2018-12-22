@@ -6,7 +6,7 @@ let path = require("path");
 // =============================================================
 module.exports = function(app) {
 
-  app.get("/", function(req, res) {
+  app.get("/", (req, res)=> {
     res.sendFile(path.join(__dirname, "../Views/index.html"));
   });
 
@@ -22,7 +22,7 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../Views/search.html"));
   });
 
-  app.get("/user", function(req, res) {
+  app.get("/user", (req, res) => {
     res.sendFile(path.join(__dirname, "../Views/user.html"));
   });
 

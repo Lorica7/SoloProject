@@ -1,14 +1,15 @@
 const express = require("express")
 const app = express.Router()
-var { secretKey } = require('../keys')
+var  JWtoken = require('../keys')
 const cors = require('cors')
 const jwt = require("jsonwebtoken")
 const bcrypt = require('bcrypt')
 const db = require("../Models");
-const User = require("../models/user")
+
 app.use(cors());
 
-let secrets = secretKey.secret;
+
+let secrets = JWtoken.secret;
 
 module.exports = function (app) {
 
@@ -63,19 +64,16 @@ module.exports = function (app) {
             where: {
                 email: req.body.email
             }
+        }) .then(console.log(res))
+            .then(res => {
+                    if (res.body.password === db.User.password) {
+                        app.get("/user", (req, res));
+                    } else {
+                    console.log("error")
+                    res.status(400).json({ error: 'Invalid entry' })
+                
+            }
         })
-            .then(user => {
-                if (user) {
-                    if (bcrypt.compareSync(req.body.password, db.User.password)) {
-                        let token = jwt.sign(bd.Useruser.dataValues, secrets, {
-                            expiresIn: 1440
-                        })
-                        res.send(token)
-                    }
-                } else {
-                    res.status(400).json({ error: 'User does not exist' })
-                }
-            })
             .catch(err => {
                 res.status(400).json({ error: err })
             })

@@ -9,6 +9,15 @@ module.exports = function(app) {
     });
   });
 
+  // app.get("/api/user", function(req, res) {
+  //   db.User.findAll({
+  //     where: {
+  //       password: req.params.password
+  //     }
+  //   }).then(function(results) {
+  //     res.json(results);
+  //   });
+  // });
 
   app.get("/api/user/:email", function(req, res) {
     db.User.findAll({
@@ -75,7 +84,7 @@ module.exports = function(app) {
       where: {
         password: req.body.passwordOld 
       }, 
-  }).then(function(results,er) {
+  }).then(function(results,err) {
       res.json(results);
     })
     .catch(err => {

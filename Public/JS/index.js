@@ -1,4 +1,25 @@
 
+
+
+$("#signIn").on("click", function(event) {
+    event.preventDefault();
+  console.log("Listening")
+    let signersIn = {
+      email: $("#emailSign").val().trim(),
+      password: $("#passSign").val().trim(),
+    };
+    $.post("/api/login", signersIn)
+      .then(function(data) {
+       console.log(signersIn);
+        console.log(data);
+      });
+  
+    $("#emailSign").val("");
+    $("#passwordSign").val("");
+});
+
+
+
 // Get references to page elements
 // var $exampleText = $("#example-text");
 // var $exampleDescription = $("#example-description");
