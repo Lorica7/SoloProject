@@ -5,15 +5,33 @@ const db = require("./Models");
 const app = express();
 const cors = require('cors')
 const PORT = process.env.PORT || 3000;
+const session = require('express-session');
+const expVal = require ('express-validator');
+const passport = require('passport');
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors());
+
+app.use(expVal());
 
 require('dotenv').config();
 
 app.use("/public", express.static(__dirname + "/Public"));
-app.use(cors());
+
+// app.set('views', path.join(__dirname, 'views'))
+// app.set('view engine', 'hbs');
+
+app.use(session({
+  secret: 'vlskeuhcfdeuh',
+  resave: false,
+  saveUninitialized: false,
+  // cookie: { secure: true }
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routes
 require("./routes/apiRoutes")(app);

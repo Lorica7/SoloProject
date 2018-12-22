@@ -5,12 +5,8 @@ exports.webContext = {
 };
 
 
-
 exports.users_db = {
     username: process.env.db_username,
     password: process.env.db_password
 }
 
-exports.JWtoken = {
-  secret: process.env.JWT_Key
-}
