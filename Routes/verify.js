@@ -47,13 +47,12 @@ module.exports = function (app) {
                     bcrypt.hash(req.body.password, 10, (err, hash) => {
                         userInfo.password = hash
                         db.User.create(userInfo)
-                            .then(user => {
-                               
+                            
+                        .then(user => {
                                 res.render('register', {title: "Registration Successful"});
-                            })
-                            .catch(err => {
+                            }).catch(err => {
                                 res.send('error: ' + err)
-                            })
+                             })
                     })
                 } else {
                     res.json({ error: "User already exists" })

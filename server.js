@@ -36,8 +36,6 @@ app.use(session({
 }));
 
 
-
-
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -47,8 +45,6 @@ require("./routes/htmlRoutes")(app);
 require("./routes/verify")(app);
 
 
-
-//
 
 var syncOptions = { force: false };
 

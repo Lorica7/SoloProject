@@ -10,8 +10,13 @@ module.exports = function(app) {
   //   res.sendFile(path.join(__dirname, "../Views/index.handlebars"));
   // });
 
-  app.get('/', (req, res) => res.render('index', { layout: 'main' }));
+  app.get('/', function (req, res) {
+  console.log(req.user)
+  console.log(req.isAuthenticated())
+  res.render('index', { layout: 'main' });
+  });
 
+  
   // app.get("/register", function(req, res) {
   //   res.sendFile(path.join(__dirname, "../Views/register.handlebars"));
   // });
