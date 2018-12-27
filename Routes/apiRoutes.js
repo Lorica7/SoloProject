@@ -74,7 +74,7 @@ module.exports = function(app) {
     },
     {
       where: {
-        password: req.body.passwordOld 
+        email: req.body.email 
       }, 
   }).then(function(results) {
       res.json(results);

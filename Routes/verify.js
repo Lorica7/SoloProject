@@ -8,10 +8,22 @@ var Sequelize = require("sequelize");
 let passport = require('passport');
 app.use(cors());
 
-module.exports = function(app) {
+module.exports = function (app) {
 
     app.post('/api/register', (req, res) => {
-    
+
+        req.checkBody('firstName', 'firstName field cannot be empty.').notEmpty();
+        req.checkBody('lastName', 'lastName field cannot be empty.').notEmpty();
+        req.checkBody('email', 'The email you entered is invalid, please try again.').isEmail();
+        req.checkBody('email', 'Email address must be between 4-100 characters long, please try again.').len(4, 100);
+        req.checkBody('password', 'Password must be between 8-100 characters long.').len(8, 100);
+        req.checkBody("password", "Password must include one lowercase character, one uppercase character, a number, and a special character.").matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,}$/, "i");
+
+        const errors = req.validationErrors();
+        if (errors) {
+            console.log(`errors: ${JSON.stringify(errors)}`);
+        }
+
         const userInfo = {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
@@ -19,7 +31,7 @@ module.exports = function(app) {
             password: req.body.password,
             type: req.body.type
         }
-    
+
         db.User.findOne({
             where: {
                 email: req.body.email
@@ -29,7 +41,7 @@ module.exports = function(app) {
                 if (!user) {
                     bcrypt.hash(req.body.password, 10, (err, hash) => {
                         userInfo.password = hash
-                      db.User.create(userInfo)
+                        db.User.create(userInfo)
                             .then(user => {
                                 res.json({ status: user.email + ' registered' })
                             })
@@ -45,7 +57,7 @@ module.exports = function(app) {
                 res.send('error: ' + err)
             })
     })
-    
+
     app.post('/api/login', (req, res) => {
         db.User.findOne({
             where: {
@@ -68,6 +80,6 @@ module.exports = function(app) {
                 res.status(400).json({ error: err })
             })
     })
-    
-     };
+
+};
 
