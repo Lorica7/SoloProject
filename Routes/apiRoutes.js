@@ -9,15 +9,6 @@ module.exports = function(app) {
     });
   });
 
-  // app.get("/api/user", function(req, res) {
-  //   db.User.findAll({
-  //     where: {
-  //       password: req.params.password
-  //     }
-  //   }).then(function(results) {
-  //     res.json(results);
-  //   });
-  // });
 
   app.get("/api/user/:email", function(req, res) {
     db.User.findAll({
@@ -67,7 +58,8 @@ module.exports = function(app) {
     });
   });
 
- 
+  
+  
 
   app.put("/api/update", function(req, res) {
     console.log("User Data:");
@@ -84,12 +76,9 @@ module.exports = function(app) {
       where: {
         password: req.body.passwordOld 
       }, 
-  }).then(function(results,err) {
+  }).then(function(results) {
       res.json(results);
-    })
-    .catch(err => {
-      res.send('error: ' + err)
-    })
+    });
   });
 
 
