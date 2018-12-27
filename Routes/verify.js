@@ -24,68 +24,68 @@ module.exports = function (app) {
             console.log(`errors: ${JSON.stringify(errors)}`);
 
             res.render('register',
-             {title: "Registration Error",
-                errors: errors
-            });
+                {
+                    title: "Registration Error",
+                    errors: errors
+                });
         } else {
 
-        const userInfo = {
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            email: req.body.email,
-            password: req.body.password,
-            type: req.body.type
-        }
-
-        db.User.findOne({
-            where: {
-                email: req.body.email
+            const userInfo = {
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                email: req.body.email,
+                password: req.body.password,
+                type: req.body.type
             }
-        })
-            .then(user => {
-                if (!user) {
-                    bcrypt.hash(req.body.password, 10, (err, hash) => {
-                        userInfo.password = hash
-                        db.User.create(userInfo)
-                            
-                        .then(user => {
-                                res.render('register', {title: "Registration Successful"});
+
+            db.User.findOne({
+                where: {
+                    email: req.body.email
+                }
+            })
+                .then(user => {
+                    if (!user) {
+                        bcrypt.hash(req.body.password, 10, (error, hash) => {
+                            userInfo.password = hash
+
+                            db.User.create(userInfo).then(user => {
+                                if (error) throw error;
+
+                                db.sequelize.query("SELECT LAST_INSERT_ID() FROM Users",
+                                    { type: db.sequelize.QueryTypes.SELECT })
+                                if (error) throw error;
+                                    else {
+                                const user_id = results[0];
+Î
+                                console.log(results[0]);
+                                req.login(user_id, function (err) {
+                                    res.redirect('/');
+                                })
+
+                                res.render('register', { title: "Registration Successful" });
+                            }
                             }).catch(err => {
                                 res.send('error: ' + err)
-                             })
-                    })
-                } else {
-                    res.json({ error: "User already exists" })
-                }
-            })
-            .catch(err => {
-                res.send('error: ' + err)
-            })
+                            })
+                        })
+                    }else {
+                        res.json({ error: "User already exists" })
+                    }
+                })
+        } 
+    })
+      
+        passport.serializeUser((user_id, done) => {
+        done(null, user_id);
+        });
+
+        passport.deserializeUser((user_id, done) => {
+        db.User.findOne({
+        where: {
+            id: user_id
         }
     })
 
-    app.post('/api/login', (req, res) => {
-        db.User.findOne({
-            where: {
-                email: req.body.email
-            }
-        })
-            .then(user => {
-                if (user) {
-                    if (bcrypt.compareSync(req.body.password, user.password)) {
-                        let token = jwt.sign(user.dataValues, secrets, {
-                            expiresIn: 1440
-                        })
-                        res.send(token)
-                    }
-                } else {
-                    res.status(400).json({ error: 'User does not exist' })
-                }
-            })
-            .catch(err => {
-                res.status(400).json({ error: err })
-            })
-    })
+});
 
-};
-
+}

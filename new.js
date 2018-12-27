@@ -1,3 +1,5 @@
+
+
 const express = require("express")
 const app = express.Router()
 const cors = require('cors')
@@ -24,71 +26,68 @@ module.exports = function (app) {
             console.log(`errors: ${JSON.stringify(errors)}`);
 
             res.render('register',
-                {
-                    title: "Registration Error",
-                    errors: errors
-                });
+             {title: "Registration Error",
+                errors: errors
+            });
         } else {
 
-            const userInfo = {
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
-                email: req.body.email,
-                password: req.body.password,
-                type: req.body.type
-            }
+        const userInfo = {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            password: req.body.password,
+            type: req.body.type
+        }
 
-            db.User.findOne({
-                where: {
-                    email: req.body.email
+        db.User.findOne({
+            where: {
+                email: req.body.email
+            }
+        })
+            .then(user => {
+                if (!user) {
+                    bcrypt.hash(req.body.password, 10, (err, hash) => {
+                        userInfo.password = hash
+                        db.User.create(userInfo)
+                            
+                        .then(user => {
+                                res.render('register', {title: "Registration Successful"});
+                            }).catch(err => {
+                                res.send('error: ' + err)
+                             })
+                    })
+                } else {
+                    res.json({ error: "User already exists" })
                 }
             })
-                .then(user => {
-                    if (!user) {
-                        bcrypt.hash(req.body.password, 10, (err, hash) => {
-                            userInfo.password = hash
+            .catch(err => {
+                res.send('error: ' + err)
+            })
+        }
+    })
 
-                            db.User.create(userInfo).then(user => {
-                                if (error) throw error;
-
-                                db.User.query('SElECT LAST_INSERT_ID() as user_id', function (error, results, fields) {
-                                    if (error) throw error;
-
-                                    const user_id = results[0];
-
-                                    console.log(results[0]);
-                                    req.login(user_id, function(err){
-                                        res.redirect('/');
-                                    })
-
-                                    res.render('register', { title: "Registration Successful" });
-
-                                }).catch(err => {
-                                    res.send('error: ' + err)
-                                })
-                            })
+    app.post('/api/login', (req, res) => {
+        db.User.findOne({
+            where: {
+                email: req.body.email
+            }
+        })
+            .then(user => {
+                if (user) {
+                    if (bcrypt.compareSync(req.body.password, user.password)) {
+                        let token = jwt.sign(user.dataValues, secrets, {
+                            expiresIn: 1440
                         })
-                    } else {
-                        res.json({ error: "User already exists" })
+                        res.send(token)
                     }
-                })
-                .catch(err => {
-                    res.send('error: ' + err)
-                })
-        }
+                } else {
+                    res.status(400).json({ error: 'User does not exist' })
+                }
+            })
+            .catch(err => {
+                res.status(400).json({ error: err })
+            })
     })
 
-passport.serializeUser((user_id, done) => {
-    done(null, user_id);
-});
+};
 
-passport.deserializeUser((user_id, done) => {
-    db.User.findOne({
-        where: {
-            id: user_id
-        }
-    })
-    
-});
-
-}

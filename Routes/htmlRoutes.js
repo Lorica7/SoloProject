@@ -1,6 +1,7 @@
 
 let path = require("path");
-
+const expVal = require ('express-validator');
+const passport = require('passport');
 
 // Routes
 // =============================================================
@@ -16,7 +17,7 @@ module.exports = function(app) {
   res.render('index', { layout: 'main' });
   });
 
-  
+
   // app.get("/register", function(req, res) {
   //   res.sendFile(path.join(__dirname, "../Views/register.handlebars"));
   // });
