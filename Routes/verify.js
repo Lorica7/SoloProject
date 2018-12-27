@@ -48,7 +48,7 @@ module.exports = function (app) {
                         userInfo.password = hash
                         db.User.create(userInfo)
                             .then(user => {
-                                res.json({ status: user.email + ' registered' })
+                               
                                 res.render('register', {title: "Registration Successful"});
                             })
                             .catch(err => {

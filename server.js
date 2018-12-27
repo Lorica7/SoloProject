@@ -2,7 +2,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const db = require("./Models");
-const session = require('express-session');
+
 const expVal = require ('express-validator');
 const passport = require('passport');
 const exphbs = require('express-handlebars');
@@ -26,12 +26,17 @@ app.use(expVal());
 
 require('dotenv').config();
 
+const session = require('express-session');
+
 app.use(session({
   secret: 'vlskeuhcfdeuh',
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   // cookie: { secure: true }
 }));
+
+
+
 
 app.use(passport.initialize());
 app.use(passport.session());

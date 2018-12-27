@@ -22,25 +22,25 @@ module.exports = function(app) {
   //   res.sendFile(path.join(__dirname, "../Views/results.handlebars"));
   // });
 
-  app.get('/results', (req, res) => res.render('results', { layout: 'landing' }));
+  app.get('/results', (req, res) => res.render('results', { layout: 'main' }));
 
   // app.get("/search", function(req, res) {
   //   res.sendFile(path.join(__dirname, "../Views/search.handlebars"));
   // });
 
-  app.get('/search', (req, res) => res.render('search', { layout: 'landing' }));
+  app.get('/search', (req, res) => res.render('search', { layout: 'main' }));
 
   // app.get("/user", (req, res) => {
   //   res.sendFile(path.join(__dirname, "../Views/user.handlebars"));
   // });
 
 
-  app.get('/user', (req, res) => res.render('user', { layout: 'landing' }));
+  app.get('/user', (req, res) => res.render('user', { layout: 'main' }));
 
   // app.get("/errors", (req, res) => {
   //   res.sendFile(path.join(__dirname, "../Views/errors.handlebars"));
   // });
 
-  app.get('/errors', (req, res) => res.render('errors', { layout: 'landing' }));
+  app.get('/errors', (req, res) => res.render('errors', { layout: 'main' }));
 
 };
