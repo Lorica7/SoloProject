@@ -22,7 +22,12 @@ module.exports = function (app) {
         const errors = req.validationErrors();
         if (errors) {
             console.log(`errors: ${JSON.stringify(errors)}`);
-        }
+
+            res.render('register',
+             {title: "Registration Error",
+                errors: errors
+            });
+        } else {
 
         const userInfo = {
             firstName: req.body.firstName,
@@ -44,6 +49,7 @@ module.exports = function (app) {
                         db.User.create(userInfo)
                             .then(user => {
                                 res.json({ status: user.email + ' registered' })
+                                res.render('register', {title: "Registration Successful"});
                             })
                             .catch(err => {
                                 res.send('error: ' + err)
@@ -56,6 +62,7 @@ module.exports = function (app) {
             .catch(err => {
                 res.send('error: ' + err)
             })
+        }
     })
 
     app.post('/api/login', (req, res) => {
