@@ -83,6 +83,7 @@ $(document).ready(function () {
   
     $("#emailSign").val("");
     $("#passwordSign").val("");
+    res.redirect('/search')
 });
 
 

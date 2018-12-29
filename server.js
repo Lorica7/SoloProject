@@ -15,8 +15,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Handlebars
-app.set('Views', path.join(__dirname, 'Views'))
+
 
 
 app.use("/public", express.static(__dirname + "/Public"));

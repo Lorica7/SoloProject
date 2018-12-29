@@ -61,3 +61,15 @@ form {
     float: right;
     clear: none
 }
+
+#petiteSearch{
+    font-weight: bold;
+}
+
+#plussizeSearch{
+    color: #D3D3D3;
+}
+
+#tallSearch{
+  color:  #D3D3D3;
+}
