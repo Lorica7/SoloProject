@@ -5,7 +5,7 @@ const db = require("./Models");
 
 const expVal = require ('express-validator');
 const passport = require('passport');
-const exphbs = require('express-handlebars');
+
 let path = require("path");
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -17,8 +17,7 @@ app.use(bodyParser.json());
 
 // Handlebars
 app.set('Views', path.join(__dirname, 'Views'))
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
+
 
 app.use("/public", express.static(__dirname + "/Public"));
 

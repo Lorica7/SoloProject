@@ -1,8 +1,18 @@
+
 const webContext = require ("../../keys");
 
 var apikey = webContext.api_key;
 
+var key = googleSearch.googleKey;
 
+var cseCode = googleSearch.cseCode;
+
+let params;
+
+
+//Retrieve Info, and Display
+
+// Contextual Web
 $.ajax({
     url: "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/WebSearchAPI?q=petite+pants&count=25&autocorrect=false",
  headers: {"X-RapidAPI-Key": apikey},
@@ -13,17 +23,15 @@ $.ajax({
     
 })
 
-http://webservices.amazon.com/onca/xml?
-// Service=AWSECommerceService&
-// AWSAccessKeyId=[AWS Access Key ID]&
-// AssociateTag=[Associate Tag]&
-// Operation=ItemSearch&
-// Condition=All&
-// Availability=Available&
-// SearchIndex=Apparel&
-// Keywords=Shirt
-// &Timestamp=[YYYY-MM-DDThh:mm:ssZ]
-// &Signature=[Request Signature]
+// Google Custom Search
+
+$.ajax({   
+url: `https://www.googleapis.com/customsearch/v1?key= ${key} ?cx= ${cseCode} &q= ${params}`,
+method: "GET",
+}).then(function(response) { 
+console.log(response); // 
+
+});  
 
 
 

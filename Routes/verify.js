@@ -51,12 +51,12 @@ module.exports = function (app) {
                             db.User.create(userInfo).then(user => {
                                 if (error) throw error;
 
-                                db.sequelize.query("SELECT LAST_INSERT_ID() FROM Users",
+                                db.sequelize.query("SELECT LAST_INSERT_ID()",
                                     { type: db.sequelize.QueryTypes.SELECT })
                                 if (error) throw error;
                                     else {
                                 const user_id = results[0];
-Î
+
                                 console.log(results[0]);
                                 req.login(user_id, function (err) {
                                     res.redirect('/');

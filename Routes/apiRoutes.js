@@ -1,6 +1,8 @@
 var db = require("../Models");
 
 module.exports = function(app) {
+
+  //Getting Stored Data
   
   app.get("/api/garments", function(req, res) {
     db.Garment.findAll({})
@@ -59,7 +61,7 @@ module.exports = function(app) {
   });
 
   
-  
+  // Changing Data
 
   app.put("/api/update", function(req, res) {
     console.log("User Data:");
@@ -93,6 +95,18 @@ module.exports = function(app) {
       res.json(results);
     });
   });
+
+
+  //Putting Data 
+
+
+
+
+
+
+
+
+
 
 
 };
