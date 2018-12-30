@@ -10,3 +10,7 @@ exports.users_db = {
     password: process.env.db_password
 }
 
+exports.googleSearch ={
+  key: process.env.GOOGLE_KEY,
+  cseCode: process.env.GOOGLE_CSE_KEY
+}

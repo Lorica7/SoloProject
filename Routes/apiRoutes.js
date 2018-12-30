@@ -22,6 +22,20 @@ module.exports = function(app) {
     });
   });
 
+  // app.get("/api/user/:email", function (req, res) {
+  //   db.User.findAll({
+  //       where: {
+  //           email: req.params.email
+  //       }
+  //   }) 
+  //       .then(email => {
+  //           if (!email) {
+  //               console.log(error)
+  //           } else {
+  //           } res.redirect('/search');
+           
+  //       });
+  //     })
 
   app.get("/api/garments/color", function(req, res) {
     db.Garments.findAll({
@@ -95,18 +109,6 @@ module.exports = function(app) {
       res.json(results);
     });
   });
-
-
-  //Putting Data 
-
-
-
-
-
-
-
-
-
 
 
 };
