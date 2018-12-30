@@ -23,11 +23,8 @@ module.exports = function (app) {
         if (errors) {
             console.log(`errors: ${JSON.stringify(errors)}`);
 
-            res.render('register',
-                {
-                    title: "Registration Error",
-                    errors: errors
-                });
+            res.render('/')
+
         } else {
 
             const userInfo = {
@@ -54,38 +51,47 @@ module.exports = function (app) {
                                 db.sequelize.query("SELECT LAST_INSERT_ID()",
                                     { type: db.sequelize.QueryTypes.SELECT })
                                 if (error) throw error;
-                                    else {
-                                const user_id = results[0];
+                                else {
+                                    const user_id = results[0];
 
-                                console.log(results[0]);
-                                req.login(user_id, function (err) {
-                                    res.redirect('/');
-                                })
-
-                                res.render('register', { title: "Registration Successful" });
-                            }
+                                    console.log(results[0]);
+                                    req.login(user_id, function (err) {
+                                        res.redirect('/');
+                                    })
+                                }
                             }).catch(err => {
                                 res.send('error: ' + err)
                             })
                         })
-                    }else {
+                    } else {
                         res.json({ error: "User already exists" })
                     }
                 })
-        } 
-    })
-      
-        passport.serializeUser((user_id, done) => {
-        done(null, user_id);
-        });
-
-        passport.deserializeUser((user_id, done) => {
-        db.User.findOne({
-        where: {
-            id: user_id
         }
     })
 
-});
+   
 
-}
+
+
+
+
+
+       
+
+
+        passport.serializeUser((user_id, done) => {
+            done(null, user_id);
+        });
+
+        passport.deserializeUser((user_id, done) => {
+            db.User.findOne({
+                where: {
+                    id: user_id
+                }
+            })
+
+        });
+
+    };
+

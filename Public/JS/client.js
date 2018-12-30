@@ -1,5 +1,5 @@
 
-//Saving Client and Saving Clothes
+//Saving Client and Saving Garments
 $(document).ready(function () {
 
   $("#createUser").on("click", function (event) {
@@ -27,7 +27,7 @@ $(document).ready(function () {
 
     $("#type").val("");
 
-    ;
+    });
 
 
     $("#updateUser").on("click", function (event) {
@@ -35,7 +35,7 @@ $(document).ready(function () {
       console.log("Hi, listener works")
 
 
-      var updateUser = {
+        var updateUser = {
         firstName: $("#firstName").val().trim(),
         lastName: $("#lastName").val().trim(),
         email: $("#email").val().trim(),
@@ -46,48 +46,60 @@ $(document).ready(function () {
       };
 
 
-      var updateFunc = (updateUser) => {
+        var updateFunc = (updateUser) => {
         $.ajax({
           method: "PUT",
           url: "/api/update",
           data: updateUser
         }).then(console.log(updateUser));
-      }
+        }
 
-      updateFunc(updateUser);
+        updateFunc(updateUser);
 
-      $("#firstName").val("");
-      $("#lastName").val("");
-      $("#email").val("");
-      $("#passwordNew").val("");
-      $("#passwordOld").val("");
-      $("#passwordConf").val("");
-      $("#size").val("");
-      $("#type").val("");
+          $("#firstName").val("");
+          $("#lastName").val("");
+          $("#email").val("");
+         $("#passwordNew").val("");
+          $("#passwordOld").val("");
+        $("#passwordConf").val("");
+        $("#size").val("");
+        $("#type").val("");
+    });
+  
 
-    })
-  })
-
-  $("#signIn").on("click", function(event) {
+  $("#signersIn").on("click", function(event) {
     event.preventDefault();
-  console.log("Listening")
-    let signersIn = {
+    console.log("Listening")
+
+      let signersIn = {
       email: $("#emailSign").val().trim(),
       password: $("#passSign").val().trim(),
-    };
-    $.post("/api/login", signersIn)
-      .then(function(data) {
-       console.log(signersIn);
-        console.log(data);
+     };
+   
+      var getEmail = (signersIn) => {
+      $.ajax({
+      method: "GET",
+      url: "/api/user/:email",
+      data: signersIn
+      }).then( function (res){
+      console.log(signersIn)
       });
-  
-    $("#emailSign").val("");
-    $("#passwordSign").val("");
-    res.redirect('/search')
+    }
+
+      getEmail(signersIn);
+    
+      $("#emailSign").val("");
+      $("#passSign").val("");
+    
+      window.location.href="/search";
+
+        });
+
 });
 
 
 
 
 
-});
+
+
