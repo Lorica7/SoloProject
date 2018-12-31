@@ -1,4 +1,36 @@
 
+// The API object contains methods for each kind of request we'll make
+
+
+var API = {
+  searchHero: function(example) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "GET",
+      url: "api/search",
+      data: JSON.stringify(example)
+    });
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -10,18 +42,7 @@
 // var $submitBtn = $("#submit");
 // var $exampleList = $("#example-list");
 
-// // The API object contains methods for each kind of request we'll make
-// var API = {
-//   saveExample: function(example) {
-//     return $.ajax({
-//       headers: {
-//         "Content-Type": "application/json"
-//       },
-//       type: "POST",
-//       url: "api/examples",
-//       data: JSON.stringify(example)
-//     });
-//   },
+
 //   getExamples: function() {
 //     return $.ajax({
 //       url: "api/examples",
@@ -100,25 +121,25 @@
 //   });
 // };
 
-// // Add event listeners to the submit and delete buttons
+// Add event listeners to the submit and delete buttons
 // $submitBtn.on("click", handleFormSubmit);
 // $exampleList.on("click", ".delete", handleDeleteBtnClick);
 
 
-// // app.post('users/add', function(req, res){
-// //     var newUser = {
-// //         first_Name : req.body.firstName,
-// //         last_Name: req.body.lastName,
-// //         email: req.body.email
-// //     };
-// // });
+// app.post('users/add', function(req, res){
+//     var newUser = {
+//         first_Name : req.body.firstName,
+//         last_Name: req.body.lastName,
+//         email: req.body.email
+//     };
+// });
 
-// // app.get('/', function, (req, res){
-// //     res.render('index', {
-// //         title: 'Customers',
-// //         users: users
-// //     });
-// // });
+// app.get('/', function, (req, res){
+//     res.render('index', {
+//         title: 'Customers',
+//         users: users
+//     });
+// });
 
 // $.ajax({
 

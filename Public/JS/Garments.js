@@ -1,62 +1,88 @@
 
-var webContext = ('../keys')
-var googleSearch = ('../keys')
-
-var apikey = webContext.api_key;
-
-var key = googleSearch.googleKey;
-
-var cseCode = googleSearch.cseCode;
-
-let params;
-
-
 //Retrieve Info, and Display
 
 // Contextual Web
 $(document).ready(function () {
 
-    $.ajax({
-        url: "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/WebSearchAPI?q=petite+pants&count=25&autocorrect=false",
-        headers: { "X-RapidAPI-Key": apikey },
-        method: "GET"
-    })
-        .then(function (response, err) {
-            console.log(response);
-
-        })
+    // $.ajax({
+    //     url: "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/WebSearchAPI?q=petite+pants&count=25&autocorrect=false",
+    //     headers: { "X-RapidAPI-Key": apikey },
+    //     method: "GET"
+    // })
+    //     .then(function (response, err) {
+    //         console.log(response);
+    //     })
 
     // Google Custom Search
 
-    $.ajax({
-        url: `https://www.googleapis.com/customsearch/v1?key= ${key} ?cx= ${cseCode} &q= ${params}`,
-        method: "GET",
-    }).then(function (response) {
-        console.log(response); // 
+    $("#search").on("click", function (event) {
+        event.preventDefault();
 
-    });
+        var userSearch = (event) => {
+            return $.ajax({
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                type: "POST",
+                url: "/search",
+                data: JSON.stringify(heroes.json)
+            }).then(function (response) {
+                var results = response.data;
 
-    // save response data  in var
+                for (var i = 0; i < results.length; i++) {
+                    var animalDiv = $("<div class=\"animal-item\">");
+                   
+                    var heroes = $("<div class=\"Hero-items\">");
+                    var heroImages = $("<img>").attr("src", response.hero[i].image)
+                    var heroName = $("<h1>").text(response.hero[i].name);
+                   
+                    $("#artist-div").append(artistURL, artistImage, trackerCount, upcomingEvents, goToArtist);
 
-    // $("button").on("click", function() {
+                }
+            });
 
 
-});
 
-// $.get("/api/all", function(data) {
-//     for (var i = 0; i < data.length; i++) {
+            }
+        }
 
-//       var wellSection = $("<div>");
 
-//       wellSection.addClass("well");
 
-//       wellSection.attr("id", "book-well-" + i);
+                // Handling returned objects
 
-//       $("#well-section").append(wellSection);
 
-//       $("#clothes-well-" + i).append("<h2>" + (i + 1) + ". " + data[i].title + "</h2>");
-//       $("#clothes-well-" + i).append("<h3>Author: " + data[i].author + "</h4>");
-//       $("#clothes-well-" + i).append("<h3>Genre: " + data[i].genre + "</h4>");
-//       $("#clothes-well-" + i).append("<h3>Pages: " + data[i].pages + "</h4>");
-//     }
-//   });
+
+
+
+
+          
+
+
+
+    // $("#search").on("click", function (event) {
+    //     event.preventDefault();
+
+    //     params = $('#garmentSearch').val(),
+    //      params2 = $('#sizeSearch').val(),
+    //      params3 = $('#colorSearch').val()
+
+    //      app.get("api/dummy/:params1/:params2/:params3", function (req, res) {
+
+
+
+    //     }).then(function (response) {
+    //         console.log(response); // 
+    //     });
+    //     })  
+
+    // });
+
+    // app.get("api/search/:params1/:params2/:params3", function(req, res) {
+    //     url: queryURL,
+    //     method: "GET"
+    //   })
+    //     .then(function(response) {
+    //       var results = response.data;
+
+
+

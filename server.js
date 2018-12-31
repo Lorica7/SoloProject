@@ -2,20 +2,17 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const db = require("./Models");
-
 const expVal = require ('express-validator');
 const passport = require('passport');
-
+require("dotenv").config();
 let path = require("path");
 const PORT = process.env.PORT || 3000;
 const app = express();
-
+var axios = require("axios");
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-
 
 
 app.use("/public", express.static(__dirname + "/Public"));
@@ -41,6 +38,7 @@ app.use(passport.session());
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 require("./routes/verify")(app);
+require("./routes/extCalls")(app);
 
 
 

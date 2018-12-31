@@ -1,4 +1,5 @@
 var db = require("../Models");
+var heroList = require("/..heroes.json");
 
 module.exports = function(app) {
 
@@ -37,6 +38,11 @@ module.exports = function(app) {
   //       });
   //     })
 
+  app.get('api/heroes'), function (req, res){
+    res.json(heroList)
+  }
+
+
   app.get("/api/garments/color", function(req, res) {
     db.Garments.findAll({
       where: {
@@ -73,6 +79,7 @@ module.exports = function(app) {
       res.json(results);
     });
   });
+
 
   
   // Changing Data
