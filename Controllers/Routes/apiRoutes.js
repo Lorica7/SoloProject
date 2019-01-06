@@ -1,5 +1,4 @@
-var db = require("../Models");
-
+var db = require("../../Models");
 
 module.exports = function(app) {
 
@@ -7,20 +6,15 @@ module.exports = function(app) {
   
   app.get("/api/garments", function(req, res) {
     db.Garment.findAll({})
-    .then(function(results) {
-      res.json(results);
-    });
+    .then((results) => {res.json(results);});
   });
-
 
   app.get("/api/user/:email", function(req, res) {
     db.User.findAll({
       where: {
         email: req.params.email
       }
-    }).then(function(results) {
-      res.json(results);
-    });
+    }).then((results) => {res.json(results);});
   });
 
   // app.get("/api/user/:email", function (req, res) {
@@ -43,48 +37,46 @@ module.exports = function(app) {
   }
 
 
-  app.get("/api/garments/color", function(req, res) {
+  app.get("/api/garments/color", (req, res) => {
     db.Garments.findAll({
       where: {
         color: {
           color: req.params.color
         }
       }
-    }).then(function(results) {
+    }).then((results) => {
       res.json(results);
     });
   });
 
   
-  app.get("/api/garments/size", function(req, res) {
+  app.get("/api/garments/size", (req, res) => {
     db.Garment.findAll({
       where: {
         size: {
           size: req.params.size
         }
       },
-    }).then(function(results) {
+    }).then((results) => {
       res.json(results);
     });
   });
 
-  app.get("/api/garments/kind", function(req, res) {
+  app.get("/api/garments/kind", (req, res)  => {
     db.Garment.findAll({
       where: {
         kind: {
           kind: req.params.kind
         }
       },
-    }).then(function(results) {
+    }).then((results) => {
       res.json(results);
     });
   });
 
-
-  
   // Changing Data
 
-  app.put("/api/update", function(req, res) {
+  app.put("/api/update", (req, res) => {
     console.log("User Data:");
     console.log(req.body);
     db.User.update({
@@ -99,20 +91,20 @@ module.exports = function(app) {
       where: {
         email: req.body.email 
       }, 
-  }).then(function(results) {
+  }).then((results) => {
       res.json(results);
     });
   });
 
 
-  app.delete("/api/delete", function(req, res) {
+  app.delete("/api/delete", (req, res) => {
     console.log("Garment Data:");
     console.log(req.body);
     db.Garments.destroy({
       where: {
         id: req.body.id
       }
-    }).then(function(results) {
+    }).then((results) => {
       res.json(results);
     });
   });

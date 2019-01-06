@@ -1,13 +1,6 @@
-// require("dotenv").config();
 
-
-// var webContext = process.env.WEBCONTEXT_API_KEY
-
-var gSearch = process.env.GOOGLE_KEY
-
-var cseCode = process.env.GOOGLE_CSE_KEY
-//Retrieve Info, and Display
-
+let searchGarments = require("../../Controllers/utils/API")
+let websearch = require("../../Controllers/utils/API")
 // Contextual Web
 $(document).ready(function () {
 
@@ -33,34 +26,25 @@ $(document).ready(function () {
             params3: $('#colorSearch').val()
         }
 
-        let searchGarment = (allParams) => {
-            
-                $.ajax({
-                    method:"GET",
-                    url: (`https://www.googleapis.com/customsearch/v1?key= ${gSearch}
-                    ?cx= ${cseCode} &q= ${{ params: allParams.params }}
-                    +${{ params: allParams.params2 }}
-                    +${{ params: allParams.params3 }}`),
-                    data: allParams
-                })
+        searchGarments(allParams)
 
-                .then(function (response) {
-                    var results = response.data;
-                    console.log(results)
-                    for (var i = 0; i < results.length; i++) {
+            .then((response) =>{
+                var results = response.data;
+                console.log(results)
+                // for (var i = 0; i < results.length; i++) {
 
 
-                        var heroes = $("<div class=\"Hero-items\">");
-                        var heroImages = $("<img>").attr("src", response.hero[i].image)
-                        var heroName = $("<h1>").text(response.hero[i].name);
+                //     var heroes = $("<div class=\"Hero-items\">");
+                //     var heroImages = $("<img>").attr("src", response.hero[i].image)
+                //     var heroName = $("<h1>").text(response.hero[i].name);
 
-                        $("#hero-div").append(heroes, heroImages, heroName);
-                    }
-                });
-        };
-       
+                //     $("#hero-div").append(heroes, heroImages, heroName);
+                // }
+            });
+    })
 
-    });
-    searchGarment(allParams);
-})
+
+});
+   
+
 

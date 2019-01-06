@@ -2,7 +2,7 @@ const express = require("express")
 const app = express.Router()
 const cors = require('cors')
 const bcrypt = require('bcrypt')
-const db = require("../Models");
+const db = require("../../Models");
 const expVal = require('express-validator');
 var Sequelize = require("sequelize");
 let passport = require('passport');
@@ -69,17 +69,6 @@ module.exports = function (app) {
                 })
         }
     })
-
-   
-
-
-
-
-
-
-       
-
-
         passport.serializeUser((user_id, done) => {
             done(null, user_id);
         });

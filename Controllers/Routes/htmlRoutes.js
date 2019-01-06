@@ -1,12 +1,7 @@
 
-;
-
-
 // Routes
 // =============================================================
 let path = require("path");
-const expVal = require ('express-validator');
-const passport = require('passport');
 
 // Routes
 // =============================================================

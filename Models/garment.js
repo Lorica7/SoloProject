@@ -10,11 +10,3 @@ module.exports = function(sequelize, DataTypes) {
     return Garment;
   };
   
-
-// Item Identifiers fo Amazon Products
-
-// OfferListingId
-
-//   ASIN — Amazon Standard Item Number 
-
-// UPC — Universal Product Code 

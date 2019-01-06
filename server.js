@@ -4,10 +4,11 @@ const bodyParser = require("body-parser");
 const db = require("./Models");
 const expVal = require ('express-validator');
 const passport = require('passport');
-require("dotenv").config();
+const config = require("dotenv").config();
 let path = require("path");
 const PORT = process.env.PORT || 3000;
 const app = express();
+
 var axios = require("axios");
 
 // Middleware
@@ -30,15 +31,19 @@ app.use(session({
   // cookie: { secure: true }
 }));
 
+// app.use(routes);
+// const routes = require("./Controllers");
 
 app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
-require("./routes/verify")(app);
-require("./routes/extCalls")(app);
+require("./Controllers/Routes/apiRoutes")(app);
+require("./Controllers/Routes/htmlRoutes")(app);
+//
+
+require("./Controllers/verify")(app);
+require("./Controllers/utils/API")(app);
 
 
 
