@@ -1,6 +1,6 @@
 const config = require("dotenv").config();
 const axios = require("axios");
-const keys = require("../../keys");
+const keys = require("../../Config/keys");
 
 
 const webKey = keys.webKey

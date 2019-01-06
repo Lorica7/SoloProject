@@ -8,8 +8,7 @@ const config = require("dotenv").config();
 let path = require("path");
 const PORT = process.env.PORT || 3000;
 const app = express();
-
-var axios = require("axios");
+const axios = require("axios");
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -43,7 +42,6 @@ require("./Controllers/Routes/htmlRoutes")(app);
 //
 
 require("./Controllers/verify")(app);
-require("./Controllers/utils/API")(app);
 
 
 
