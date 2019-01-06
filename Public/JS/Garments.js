@@ -24,7 +24,7 @@ $(document).ready(function () {
             params3: $('#colorSearch').val()
         }
 
-        searchGarments(allParams)
+       searchGarment(allParams)
 
             .then((response) =>{
                 var results = response.data;
