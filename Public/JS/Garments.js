@@ -1,6 +1,4 @@
 
-let searchGarments = require("../../Controllers/utils/API")
-let websearch = require("../../Controllers/utils/API")
 // Contextual Web
 $(document).ready(function () {
 

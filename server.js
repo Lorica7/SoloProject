@@ -39,9 +39,7 @@ app.use(passport.session());
 // Routes
 require("./Controllers/Routes/apiRoutes")(app);
 require("./Controllers/Routes/htmlRoutes")(app);
-//
-
-require("./Controllers/verify")(app);
+require("./Controllers/Routes/verify")(app);
 
 
 
