@@ -1,5 +1,5 @@
 var db = require("../Models");
-var heroList = require("/..heroes.json");
+
 
 module.exports = function(app) {
 
@@ -39,7 +39,7 @@ module.exports = function(app) {
   //     })
 
   app.get('api/heroes'), function (req, res){
-    res.json(heroList)
+    res.json(heroes.json)
   }
 
 

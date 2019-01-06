@@ -1,38 +1,4 @@
 
-// The API object contains methods for each kind of request we'll make
-
-
-var API = {
-  searchHero: function(example) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "GET",
-      url: "api/search",
-      data: JSON.stringify(example)
-    });
-  },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
