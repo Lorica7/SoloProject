@@ -18,17 +18,17 @@ $(document).ready(function () {
         event.preventDefault();
         console.log("Listener Works")
 
-        let allParams = {
-            params: $('#garmentSearch').val(),
-            params2: $('#sizeSearch').val(),
-            params3: $('#colorSearch').val()
-        }
+        let allParams =
+            $('#garmentSearch').val();
+            // params2: $('#sizeSearch').val(),
+            // params3: $('#colorSearch').val()
+        
 
-       searchGarment(allParams)
+        $.post("/api/garments/search", allParams)
 
-            .then((response) =>{
-                var results = response.data;
-                console.log(results)
+            // .then((response) =>{
+            //     var results = response.data;
+            //     console.log(results)
                 // for (var i = 0; i < results.length; i++) {
 
 
@@ -38,7 +38,7 @@ $(document).ready(function () {
 
                 //     $("#hero-div").append(heroes, heroImages, heroName);
                 // }
-            });
+            // });
     })
 
 

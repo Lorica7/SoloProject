@@ -1,40 +1,28 @@
 var db = require("../../Models");
+const config = require("dotenv").config();
+const axios = require("axios");
+const keys = require("../../Config/keys");
+const webKey = keys.webKey
+const gKey = keys.gSearch.key
+const cseCode = keys.gSearch.cseCode
+// var finder = require("../utils/API");
 
-module.exports = function(app) {
+module.exports = function (app) {
 
   //Getting Stored Data
-  
-  app.get("/api/garments", function(req, res) {
+
+  app.get("/api/garments", function (req, res) {
     db.Garment.findAll({})
-    .then((results) => {res.json(results);});
+      .then((results) => { res.json(results); });
   });
 
-  app.get("/api/user/:email", function(req, res) {
+  app.get("/api/user/:email", function (req, res) {
     db.User.findAll({
       where: {
         email: req.params.email
       }
-    }).then((results) => {res.json(results);});
+    }).then((results) => { res.json(results); });
   });
-
-  // app.get("/api/user/:email", function (req, res) {
-  //   db.User.findAll({
-  //       where: {
-  //           email: req.params.email
-  //       }
-  //   }) 
-  //       .then(email => {
-  //           if (!email) {
-  //               console.log(error)
-  //           } else {
-  //           } res.redirect('/search');
-           
-  //       });
-  //     })
-
-  app.get('api/heroes'), function (req, res){
-    res.json(heroes.json)
-  }
 
 
   app.get("/api/garments/color", (req, res) => {
@@ -49,7 +37,7 @@ module.exports = function(app) {
     });
   });
 
-  
+
   app.get("/api/garments/size", (req, res) => {
     db.Garment.findAll({
       where: {
@@ -62,7 +50,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/api/garments/kind", (req, res)  => {
+  app.get("/api/garments/kind", (req, res) => {
     db.Garment.findAll({
       where: {
         kind: {
@@ -74,27 +62,44 @@ module.exports = function(app) {
     });
   });
 
-  // Changing Data
+  // Retrieving Data
 
-  app.put("/api/update", (req, res) => {
-    console.log("User Data:");
-    console.log(req.body);
-    db.User.update({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      size: req.body.size,
-      type: req.body.type,
-      password: req.body.passwordNew,
-    },
-    {
-      where: {
-        email: req.body.email 
-      }, 
-  }).then((results) => {
-      res.json(results);
-    });
-  });
+  app.post("/api/garments/search", (req, res) => {
+    axios
+    .get(`https://www.googleapis.com/customsearch/v1?key= ${gKey}
+        ?cx= ${cseCode} &q= ${req.body.params}`
+    )
+ console.log(req)
+   }) 
+  
+
+       
+          
+      
+    // +${{ params: req.data.allParams.params2 }}
+  // +${{ params: req.data.allParams.params3 }}`)), 
+
+    // Changing Data
+
+    app.put("/api/update", (req, res) => {
+        console.log("User Data:");
+        console.log(req.body);
+        db.User.update({
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          email: req.body.email,
+          size: req.body.size,
+          type: req.body.type,
+          password: req.body.passwordNew,
+        },
+          {
+            where: {
+              email: req.body.email
+            },
+          }).then((results) => {
+            res.json(results);
+          });
+      });
 
 
   app.delete("/api/delete", (req, res) => {
@@ -111,3 +116,19 @@ module.exports = function(app) {
 
 
 };
+
+
+  // app.get("/api/user/:email", function (req, res) {
+  //   db.User.findAll({
+  //       where: {
+  //           email: req.params.email
+  //       }
+  //   }) 
+  //       .then(email => {
+  //           if (!email) {
+  //               console.log(error)
+  //           } else {
+  //           } res.redirect('/search');
+
+  //       });
+  //     })
