@@ -22,13 +22,17 @@ $(document).ready(function () {
             $('#garmentSearch').val();
             // params2: $('#sizeSearch').val(),
             // params3: $('#colorSearch').val()
-        
 
-        $.post("/api/garments/search", allParams)
+            var garSearch = (allParams) => {
+                $.ajax({
+                  method: "POST",
+                  url: "/api/garments/search",
+                  data: allParams
+                }).then(console.log(allParams));
+                }
 
-            // .then((response) =>{
-            //     var results = response.data;
-            //     console.log(results)
+                    garSearch(allParams);
+
                 // for (var i = 0; i < results.length; i++) {
 
 

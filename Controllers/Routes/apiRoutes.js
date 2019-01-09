@@ -64,42 +64,51 @@ module.exports = function (app) {
 
   // Retrieving Data
 
-  app.post("/api/garments/search", (req, res) => {
-    axios
+  app.post("/api/garments/search",function (req, res) {
+    console.log(req)
+    let params = req.body
+    return params
+  })
+  .then((res) => {
+    res.json(res);
+  }).then(axios
     .get(`https://www.googleapis.com/customsearch/v1?key= ${gKey}
-        ?cx= ${cseCode} &q= ${req.body.params}`
-    )
- console.log(req)
-   }) 
-  
+        ?cx= ${cseCode} &q= ${params}`
+    ).then(function (response) {
+      console.log(response);
+    }).catch(function (error) {
+      console.log(error);
+    }));
 
-       
-          
-      
-    // +${{ params: req.data.allParams.params2 }}
+
+
+
+
+
+  // +${{ params: req.data.allParams.params2 }}
   // +${{ params: req.data.allParams.params3 }}`)), 
 
-    // Changing Data
+  // Changing Data
 
-    app.put("/api/update", (req, res) => {
-        console.log("User Data:");
-        console.log(req.body);
-        db.User.update({
-          firstName: req.body.firstName,
-          lastName: req.body.lastName,
-          email: req.body.email,
-          size: req.body.size,
-          type: req.body.type,
-          password: req.body.passwordNew,
+  app.put("/api/update", (req, res) => {
+    console.log("User Data:");
+    console.log(req.body);
+    db.User.update({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      size: req.body.size,
+      type: req.body.type,
+      password: req.body.passwordNew,
+    },
+      {
+        where: {
+          email: req.body.email
         },
-          {
-            where: {
-              email: req.body.email
-            },
-          }).then((results) => {
-            res.json(results);
-          });
+      }).then((results) => {
+        res.json(results);
       });
+  });
 
 
   app.delete("/api/delete", (req, res) => {
