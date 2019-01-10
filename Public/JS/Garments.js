@@ -18,38 +18,45 @@ $(document).ready(function () {
         event.preventDefault();
         console.log("Listener Works")
 
-       const garments = $('#garmentSearch').val();
-       const size =  $('#sizeSearch').val();
-       const color = $('#colorSearch').val()
+        const garments = $('#garmentSearch').val();
+        const size = $('#sizeSearch').val();
+        const color = $('#colorSearch').val()
         console.log(color)
         const garSearch = (params) => {
             $.ajax({
                 method: "POST",
                 url: "/api/garments/search",
-                data: { "garments": garments,
-                        "color": color,
-                        "size": size
-                 }
+                data: {
+                    "garments": garments,
+                    "color": color,
+                    "size": size
+                }
             }).then(function (response, err) {
-                console.log(response);
-            });
+            //    const  data = response.filter(function (item) {
+            //         return item.pagemap.includes("cse_thumbnail");
+            //    });
+               console.log(response);
+                for (var i = 0; i < response.length; i++) {
+
+                    const items = $("<div class=groupItems>")
+                     const garmentImages = $("<img>").attr("src", response[i].pagemap.cse_thumbnail[0].src)
+                    const garmentName = $("<h1>").text(response[i].title);
+
+                    $("#clothes-results").append(items, garmentImages, garmentName);
+                }
+              }).catch((error) =>{
+               console.log(error);
+              });
         }
         garSearch(garments);
-
-        // for (var i = 0; i < results.length; i++) {
-
-
-        //     var heroes = $("<div class=\"Hero-items\">");
-        //     var heroImages = $("<img>").attr("src", response.hero[i].image)
-        //     var heroName = $("<h1>").text(response.hero[i].name);
-
-        //     $("#hero-div").append(heroes, heroImages, heroName);
-        // }
-        // });
 
 
 
     });
 
+
+
 });
+
+
 

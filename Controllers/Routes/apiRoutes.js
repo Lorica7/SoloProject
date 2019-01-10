@@ -71,7 +71,7 @@ module.exports = function (app) {
     let size = req.body.size;
     console.log(cType)
     axios
-      .get(`https://www.googleapis.com/customsearch/v1?key=${gKey}&cx=${cseCode}&q=${cType}&petite&${size}&${color}&exactTerms={petite?}`
+      .get(`https://www.googleapis.com/customsearch/v1?key=${gKey}&cx=${cseCode}&q=${cType}&petite&${size}&${color}&exactTerms={petite?}&exactTerms={cse_thumbnail}`
       )
       .then(function (response) {
          console.log(response.data.items);
