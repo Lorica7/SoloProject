@@ -2,7 +2,10 @@ var db = require("../../Models");
 
 const axios = require("axios");
 
-var finder = require("../utils/API");
+const gKey = process.env.GOOGLE_KEY
+
+const cseCode = process.env.GOOGLE_CSE_KEY
+
 
 module.exports = function (app) {
 
@@ -61,33 +64,23 @@ module.exports = function (app) {
 
   // Retrieving Data
 
-  app.post("/api/garments/search",function (req, res) {
+  app.post("/api/garments/search", function (req, res) {
     
-    let params = req.body
-     console.log(params)
-   
-  finder.searchGarment(params)
+    let cType = req.body.garments
+    console.log(cType)
+    axios
+      .get(`https://www.googleapis.com/customsearch/v1?key=${gKey}&cx=${cseCode}&q=${cType}`
+      )
+      .then(function (response) {
+        // console.log(response.data.items);
+        let newData = response.data.items;
+        res.json(newData)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   })
-  // .then((res) => {
-  //   console.log(res)
-  //   res.json(res);
-  // })
-  // .then(axios
-  //   .get(`https://www.googleapis.com/customsearch/v1?key= ${gKey}
-  //       ?cx= ${cseCode} &q= ${params}`
-  //   ).then(function (response) {
-  //     console.log(response);
-  //   }).catch(function (error) {
-  //     console.log(error);
-  //   }));
 
-
-
-
-
-
-  // +${{ params: req.data.allParams.params2 }}
-  // +${{ params: req.data.allParams.params3 }}`)), 
 
   // Changing Data
 

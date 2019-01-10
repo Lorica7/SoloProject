@@ -20,33 +20,34 @@ $(document).ready(function () {
 
         let garments =
             $('#garmentSearch').val();
-            // params2: $('#sizeSearch').val(),
-            // params3: $('#colorSearch').val()
+        // params2: $('#sizeSearch').val(),
+        // params3: $('#colorSearch').val()
 
-            var garSearch = (params) => {
-                $.ajax({
-                  method: "POST",
-                  url: "/api/garments/search",
-                  data: {"garments": garments}
-                }).then(console.log(garments));
-                }
+        var garSearch = (params) => {
+            $.ajax({
+                method: "POST",
+                url: "/api/garments/search",
+                data: { "garments": garments }
+            }).then(function (response, err) {
+                console.log(response);
+            });
+        }
+        garSearch(garments);
 
-                    garSearch(garments);
-
-                // for (var i = 0; i < results.length; i++) {
+        // for (var i = 0; i < results.length; i++) {
 
 
-                //     var heroes = $("<div class=\"Hero-items\">");
-                //     var heroImages = $("<img>").attr("src", response.hero[i].image)
-                //     var heroName = $("<h1>").text(response.hero[i].name);
+        //     var heroes = $("<div class=\"Hero-items\">");
+        //     var heroImages = $("<img>").attr("src", response.hero[i].image)
+        //     var heroName = $("<h1>").text(response.hero[i].name);
 
-                //     $("#hero-div").append(heroes, heroImages, heroName);
-                // }
-            // });
-    })
+        //     $("#hero-div").append(heroes, heroImages, heroName);
+        // }
+        // });
 
+
+
+    });
 
 });
-   
-
 
