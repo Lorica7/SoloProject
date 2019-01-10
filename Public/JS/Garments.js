@@ -40,9 +40,11 @@ $(document).ready(function () {
 
                     const items = $("<div class=groupItems>")
                      const garmentImages = $("<img>").attr("src", response[i].pagemap.cse_thumbnail[0].src)
-                    const garmentName = $("<h1>").text(response[i].title);
-
-                    $("#clothes-results").append(items, garmentImages, garmentName);
+                    const garmentName = $("<h1 class='gar-res'>").text(response[i].title);
+                    const links = $("<a>").attr("href", response[i].link);
+                    const linkText = response[i].link
+                    $(".gar-res").wrap((`<a href= ${linkText}></a>`))
+                $("#clothes-results").append(items, garmentImages, garmentName, links);
                 }
               }).catch((error) =>{
                console.log(error);
