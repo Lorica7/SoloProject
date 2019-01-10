@@ -1,10 +1,7 @@
 var db = require("../../Models");
-const config = require("dotenv").config();
+
 const axios = require("axios");
-const keys = require("../../Config/keys");
-const webKey = keys.webKey
-const gKey = keys.gSearch.key
-const cseCode = keys.gSearch.cseCode
+
 var finder = require("../utils/API");
 
 module.exports = function (app) {
@@ -67,9 +64,9 @@ module.exports = function (app) {
   app.post("/api/garments/search",function (req, res) {
     
     let params = req.body
-    // console.log(params)
-    let qstring = JSON.stringify(params)
-   finder.searchGarment(qstring)
+     console.log(params)
+   
+  finder.searchGarment(params)
   })
   // .then((res) => {
   //   console.log(res)

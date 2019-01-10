@@ -1,6 +1,6 @@
 console.log('this is loaded');
+// require('dotenv').config();
 
-require("dotenv").config();
 
 const webKey = {
   api_key: process.env.WEBCONTEXT_API_KEY, 
@@ -11,11 +11,11 @@ const webKey = {
     password: process.env.db_password
 }
 
- const gSearch = {
-  key: process.env.GOOGLE_KEY,
-  cseCode: process.env.GOOGLE_CSE_KEY
-}
+ const gKey= process.env.GOOGLE_KEY
+const cseCode = process.env.GOOGLE_CSE_KEY
+
 
 module.exports.users_db = users_db;
-module.exports.gSearch = gSearch;
+module.exports.gKey = gKey
+module.exports.cseCode = cseCode;
 module.exports.webKey = webKey;

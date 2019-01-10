@@ -14,12 +14,12 @@ const axios = require("axios");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-
+require('dotenv').config();
 app.use("/public", express.static(__dirname + "/Public"));
 
 app.use(expVal());
 
-require('dotenv').config();
+
 
 const session = require('express-session');
 

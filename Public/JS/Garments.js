@@ -18,20 +18,20 @@ $(document).ready(function () {
         event.preventDefault();
         console.log("Listener Works")
 
-        let allParams =
+        let garments =
             $('#garmentSearch').val();
             // params2: $('#sizeSearch').val(),
             // params3: $('#colorSearch').val()
 
-            var garSearch = (allParams) => {
+            var garSearch = (params) => {
                 $.ajax({
                   method: "POST",
                   url: "/api/garments/search",
-                  data: allParams
-                }).then(console.log(allParams));
+                  data: {"garments": garments}
+                }).then(console.log(garments));
                 }
 
-                    garSearch(allParams);
+                    garSearch(garments);
 
                 // for (var i = 0; i < results.length; i++) {
 
