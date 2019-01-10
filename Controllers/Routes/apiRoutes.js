@@ -5,7 +5,7 @@ const keys = require("../../Config/keys");
 const webKey = keys.webKey
 const gKey = keys.gSearch.key
 const cseCode = keys.gSearch.cseCode
-// var finder = require("../utils/API");
+var finder = require("../utils/API");
 
 module.exports = function (app) {
 
@@ -65,20 +65,24 @@ module.exports = function (app) {
   // Retrieving Data
 
   app.post("/api/garments/search",function (req, res) {
-    console.log(req)
+    
     let params = req.body
-    return params
+    // console.log(params)
+    let qstring = JSON.stringify(params)
+   finder.searchGarment(qstring)
   })
-  .then((res) => {
-    res.json(res);
-  }).then(axios
-    .get(`https://www.googleapis.com/customsearch/v1?key= ${gKey}
-        ?cx= ${cseCode} &q= ${params}`
-    ).then(function (response) {
-      console.log(response);
-    }).catch(function (error) {
-      console.log(error);
-    }));
+  // .then((res) => {
+  //   console.log(res)
+  //   res.json(res);
+  // })
+  // .then(axios
+  //   .get(`https://www.googleapis.com/customsearch/v1?key= ${gKey}
+  //       ?cx= ${cseCode} &q= ${params}`
+  //   ).then(function (response) {
+  //     console.log(response);
+  //   }).catch(function (error) {
+  //     console.log(error);
+  //   }));
 
 
 
