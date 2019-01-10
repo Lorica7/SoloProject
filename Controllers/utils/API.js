@@ -1,13 +1,13 @@
 
 const axios = require("axios");
-const keys = require("../../Config/keys");
-// require('dotenv').config();
+// const keys = require("../../Config/keys");
+//  const keys = require('dotenv').config();
 
 // const webKey = keys.webKey
 
-const gKey = keys.gkey
+const gKey = process.env.GOOGLE_KEY
 
-const cseCode = keys.cseCode
+const cseCode = process.env.GOOGLE_CSE_KEY
 
 
 function searchGarment(allParams) {

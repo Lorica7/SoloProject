@@ -1,5 +1,5 @@
 console.log('this is loaded');
-// require('dotenv').config();
+require('dotenv').config();
 
 
 const webKey = {
