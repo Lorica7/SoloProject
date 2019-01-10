@@ -66,13 +66,15 @@ module.exports = function (app) {
 
   app.post("/api/garments/search", function (req, res) {
     
-    let cType = req.body.garments
+    let cType = req.body.garments;
+    let color = req.body.color;
+    let size = req.body.size;
     console.log(cType)
     axios
-      .get(`https://www.googleapis.com/customsearch/v1?key=${gKey}&cx=${cseCode}&q=${cType}`
+      .get(`https://www.googleapis.com/customsearch/v1?key=${gKey}&cx=${cseCode}&q=${cType}&petite&${size}&${color}&exactTerms={petite?}`
       )
       .then(function (response) {
-        // console.log(response.data.items);
+         console.log(response.data.items);
         let newData = response.data.items;
         res.json(newData)
       })
