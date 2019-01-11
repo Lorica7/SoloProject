@@ -20,7 +20,14 @@ var User= sequelize.define("User", {
 
   size: DataTypes.STRING,
 
-  savedData: DataTypes.STRING
+  savedData: DataTypes.TEXT
 });
+
+// User.associate = function(models) {
+  
+//   Author.hasMany(models.Garments, {
+//     onDelete: "cascade"
+//   });
+// }
 return User;
 };

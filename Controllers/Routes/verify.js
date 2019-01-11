@@ -21,7 +21,7 @@ module.exports = function (app) {
 
         const errors = req.validationErrors();
         if (errors) {
-            console.log(`errors: ${JSON.stringify(errors)}`);
+            res.json(errors);
 
             res.render('/')
 
@@ -69,18 +69,18 @@ module.exports = function (app) {
                 })
         }
     })
-        passport.serializeUser((user_id, done) => {
-            done(null, user_id);
-        });
+        // passport.serializeUser((user_id, done) => {
+        //     done(null, user_id);
+        // });
 
-        passport.deserializeUser((user_id, done) => {
-            db.User.findOne({
-                where: {
-                    id: user_id
-                }
-            })
+        // passport.deserializeUser((user_id, done) => {
+        //     db.User.findOne({
+        //         where: {
+        //             id: user_id
+        //         }
+        //     })
 
-        });
+        // });
 
     };
 

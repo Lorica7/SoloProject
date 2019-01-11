@@ -9,42 +9,54 @@ const cseCode = process.env.GOOGLE_CSE_KEY
 
 module.exports = function (app) {
 
-  //Getting Stored Data
 
+  // ***********SIGN-IN ********
+
+  // *********** C *************
+
+  app.post("/api/user/:email", (req, res) => {
+
+    let logging = {
+      email: req.body.email,
+    }
+
+    db.User.findOne({
+      where: {
+        email: req.params.email,
+        password: req.params.password
+      }
+    }).catch((error) => {
+      res.json(error);
+    })
+      .then((logging) => {
+        db.LogIn.create({
+          email: logging.email,
+        })
+      })
+      .then((results) => {
+        res.json(results)
+      })
+        .catch((error) => {
+          res.json(error);
+        })
+
+    })
+
+  // ********GARMENT FETCHING***********
+
+  // ************* R **************
   app.get("/api/garments", function (req, res) {
     db.Garment.findAll({})
       .then((results) => { res.json(results); });
   });
 
-  app.get("/api/user/:email", function (req, res) {
-    db.User.findAll({
-      where: {
-        email: req.params.email
-      }
-    }).then((results) => { res.json(results); });
-  });
-
-
-  app.get("/api/garments/color", (req, res) => {
+  app.get("/api/garments/label", (req, res) => {
     db.Garments.findAll({
       where: {
-        color: {
-          color: req.params.color
+        label: {
+          label: req.params.label
         }
       }
-    }).then((results) => {
-      res.json(results);
-    });
-  });
-
-
-  app.get("/api/garments/size", (req, res) => {
-    db.Garment.findAll({
-      where: {
-        size: {
-          size: req.params.size
-        }
-      },
     }).then((results) => {
       res.json(results);
     });
@@ -62,10 +74,10 @@ module.exports = function (app) {
     });
   });
 
-  // Retrieving Data
-
+  // ******** EXTERNAL DATA FETCHING VIA AXIOS.GET *******
+  // ******** Possibly  C, could be R ***************
   app.post("/api/garments/search", function (req, res) {
-    
+
     let cType = req.body.garments;
     let color = req.body.color;
     let size = req.body.size;
@@ -74,7 +86,7 @@ module.exports = function (app) {
       .get(`https://www.googleapis.com/customsearch/v1?key=${gKey}&cx=${cseCode}&q=${cType}&petite&${size}&${color}&exactTerms={petite?}&exactTerms={cse_thumbnail}`
       )
       .then(function (response) {
-         console.log(response.data.items);
+        console.log(response.data.items);
         let newData = response.data.items;
         res.json(newData)
       })
@@ -84,7 +96,7 @@ module.exports = function (app) {
   })
 
 
-  // Changing Data
+  // ***** U ******* D *******
 
   app.put("/api/update", (req, res) => {
     console.log("User Data:");
@@ -120,7 +132,7 @@ module.exports = function (app) {
   });
 
 
-};
+}
 
 
   // app.get("/api/user/:email", function (req, res) {
@@ -135,5 +147,4 @@ module.exports = function (app) {
   //           } else {
   //           } res.redirect('/search');
 
-  //       });
-  //     })
+  //

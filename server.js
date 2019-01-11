@@ -30,8 +30,7 @@ app.use(session({
   // cookie: { secure: true }
 }));
 
-// app.use(routes);
-// const routes = require("./Controllers");
+
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -43,7 +42,7 @@ require("./Controllers/Routes/verify")(app);
 
 
 
-var syncOptions = { force: false };
+var syncOptions = { force: true };
 
 if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;

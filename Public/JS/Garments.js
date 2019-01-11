@@ -32,9 +32,7 @@ $(document).ready(function () {
                     "size": size
                 }
             }).then(function (response, err) {
-            //    const  data = response.filter(function (item) {
-            //         return item.pagemap.includes("cse_thumbnail");
-            //    });
+       
                console.log(response);
                 for (var i = 0; i < response.length; i++) {
 
@@ -54,11 +52,7 @@ $(document).ready(function () {
         }
         garSearch(garments);
 
-
-
     });
-
-
 
 });
 
