@@ -50,17 +50,7 @@ module.exports = function (app) {
       .then((results) => { res.json(results); });
   });
 
-  app.get("/api/garments/label", (req, res) => {
-    db.Garments.findAll({
-      where: {
-        label: {
-          label: req.params.label
-        }
-      }
-    }).then((results) => {
-      res.json(results);
-    });
-  });
+  
 
   app.get("/api/garments/kind", (req, res) => {
     db.Garment.findAll({
@@ -74,18 +64,20 @@ module.exports = function (app) {
     });
   });
 
+
   // ******** EXTERNAL DATA FETCHING VIA AXIOS.GET *******
   // ******** Possibly  C, could be R ***************
   app.post("/api/garments/search", function (req, res) {
 
     let cType = req.body.garments;
     let color = req.body.color;
-    let size = req.body.size;
+    
     console.log(cType)
     axios
-      .get(`https://www.googleapis.com/customsearch/v1?key=${gKey}&cx=${cseCode}&q=${cType}&petite&${size}&${color}&exactTerms={petite?}&exactTerms={cse_thumbnail}`
+      .get(`https://www.googleapis.com/customsearch/v1?key=${gKey}&cx=${cseCode}&q=${cType}&petite}&${color}&exactTerms={petite?}&exactTerms={cse_thumbnail}`
       )
       .then(function (response) {
+      
         console.log(response.data.items);
         let newData = response.data.items;
         res.json(newData)
@@ -94,6 +86,7 @@ module.exports = function (app) {
         console.log(error);
       });
   })
+
 
 
   // ***** U ******* D *******

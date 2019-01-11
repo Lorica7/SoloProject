@@ -2,24 +2,12 @@
 // Contextual Web
 $(document).ready(function () {
 
-    // $.ajax({
-    //     url: "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/WebSearchAPI?q=petite+pants&count=25&autocorrect=false",
-    //     headers: { "X-RapidAPI-Key": apikey },
-    //     method: "GET"
-    // })
-    //     .then(function (response, err) {
-    //         console.log(response);
-    //     })
-
-    // Google Custom Search
-
-
     $("#search").on("click", function (event) {
         event.preventDefault();
         console.log("Listener Works")
 
         const garments = $('#garmentSearch').val();
-        const size = $('#sizeSearch').val();
+        const email = $('#emailSearch').val();
         const color = $('#colorSearch').val()
         console.log(color)
         const garSearch = (params) => {
@@ -29,20 +17,20 @@ $(document).ready(function () {
                 data: {
                     "garments": garments,
                     "color": color,
-                    "size": size
+                    "email" : email
                 }
             }).then(function (response, err) {
-       
+                const email = $('#emailSearch').val();
                console.log(response);
                 for (var i = 0; i < response.length; i++) {
 
-                    const items = $("<div class=groupItems>")
+                    const items = $(`<div class=groupItems id=${email}>`)
                      const garmentImages = $("<img>").attr("src", response[i].pagemap.cse_thumbnail[0].src)
                     const garmentName = $(`<h1 class=gar-res${[i]}>`).text(response[i].title);
-                   
-                $("#clothes-results").append(items, garmentImages, garmentName);
+                    const save = $("<button class=btn btn-info btn-sm id=saveGar>")
+                $("#clothes-results").append(items, garmentImages, garmentName, save);
                 }
-                for (var i = 0; i < response.length; i++) {
+                for (let i = 0; i < response.length; i++) {
                     const linkText = response[i].link
                     $(`.gar-res${[i]}`).wrap((`<a href= ${linkText}></a>`))
                 }
@@ -51,6 +39,10 @@ $(document).ready(function () {
               });
         }
         garSearch(garments);
+
+        $('#emailSearch').val("");
+        $('#colorSearch').val("");
+        $('#garmentSearch').val("Choose...");
 
     });
 

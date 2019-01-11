@@ -29,7 +29,7 @@ $(document).ready(function () {
             $("#emailSign").val("");
             $("#passSign").val("");
         };
-
+        return signersIn
     });
 
     $("#retrieveRes").on("click", (event) => {
@@ -54,7 +54,7 @@ $(document).ready(function () {
             getEmail(signersIn);
 
 
+        }
     })
-
 
 })

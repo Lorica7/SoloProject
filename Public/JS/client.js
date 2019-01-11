@@ -15,18 +15,20 @@ $(document).ready(function () {
 
     $.post("/api/register", newUser)
       .then(function (data) {
+        
         console.log(newUser);
         $("#firstName").val("");
         $("#lastName").val("");
         $("#email").val("");
         $("#password").val("");
         $("#type").val("");
-      }).catch(function (err) {
-        res.json(err);
+      }).catch((error) => {
+        $("#confirmModal").modal('hide');
+        console.log(error);
+        const msgError = $("<h5 class=groupItems>").text("Please make sure your email and password are formatted correctly")
+        $("#errorMsg").append(msgError)
       });
-
-  });
-
+  })
 
   $("#updateUser").on("click", function (event) {
     event.preventDefault();

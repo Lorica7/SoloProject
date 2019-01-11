@@ -30,8 +30,6 @@ app.use(session({
   // cookie: { secure: true }
 }));
 
-
-
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -42,7 +40,7 @@ require("./Controllers/Routes/verify")(app);
 
 
 
-var syncOptions = { force: true };
+var syncOptions = { force: false };
 
 if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;

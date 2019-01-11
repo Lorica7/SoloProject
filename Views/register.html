@@ -21,8 +21,12 @@
                            
                             <a class="btn btn-secondary float-right" href="/" role="button" id="goHome">Home</a>
                         </div>
+                        <div id="errorMsg">
+
+                        </div>
                        
                         <div class="card-body">
+                            <h6> All fields are required.</h6>
                             <form action="" method="POST" role="form">
 
                                 <div class="form-group">
@@ -44,6 +48,7 @@
 
                                 <div class="form-group">
                                     <label for="password">Password</label>
+                                    <p>It is critical that you make a password with that includes at least one of following: a special symbol, a number, and an uppercase letter.It must be at least 8 characters long.</p>
                                     <input type="text" class="form-control" id="password" placeholder="password">
                                 </div>
 
@@ -66,8 +71,8 @@
                             <br>
                             <div class="text-right">
                                     <span class="newUser">
-                                <button type="submit" class="btn btn-primary btn-md btn-info" id="createUser" data-toggle="modal" data-target="#confirmModal"></span>
-                                    Submit</button>
+                                            <button type="submit" class="btn btn-primary btn-md btn-info" id="createUser" data-toggle="modal" data-target="#confirmModal"></span>
+            Submit</button>
                             </div>
 
                             <!-- Modal -->
