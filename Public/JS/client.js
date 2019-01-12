@@ -22,6 +22,8 @@ $(document).ready(function () {
         $("#email").val("");
         $("#password").val("");
         $("#type").val("");
+        const msg = $("<h5 class=groupItems>").text("");
+        $("#errorMsg").append(msg)
       }).catch((error) => {
         $("#confirmModal").modal('hide');
         console.log(error);
@@ -53,11 +55,11 @@ $(document).ready(function () {
       }).then((res, err) => {
         console.log(res)
         const items = $(`<div class=userInfo>`)
-        const email = $(`<h4>`).text(res.email)
-        const fName = $(`<h4>`).text(res.firstName)
-        const lName = $(`<h4>`).text(res.lastName)
-        const size = $(`<h4>`).text(res.size)
-        const type = $(`<h4>`).text(res.type)
+        const email = $(`<h4>`).text(updateUser.email)
+        const fName = $(`<h4>`).text(updateUser.firstName)
+        const lName = $(`<h4>`).text(updateUser.lastName)
+        const size = $(`<h4>`).text(updateUser.size)
+        const type = $(`<h4>`).text(updateUser.type)
         $("#updateInfo").append(items, email, fName, lName, size, type)
     }).catch((err) =>{
       console.log(err);

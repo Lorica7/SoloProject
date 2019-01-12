@@ -1,5 +1,6 @@
 var db = require("../../Models");
 const axios = require("axios");
+const bcrypt = require('bcrypt')
 const gKey = process.env.GOOGLE_KEY
 const cseCode = process.env.GOOGLE_CSE_KEY
 module.exports = function (app) {
@@ -44,7 +45,7 @@ module.exports = function (app) {
   });
 
   // ******** EXTERNAL DATA FETCHING VIA AXIOS.GET *******
- 
+
   app.post("/api/garments/search", function (req, res) {
 
     let cType = req.body.garments;
@@ -63,29 +64,37 @@ module.exports = function (app) {
       });
   })
 
-//********UPDATE******* */
+  //********UPDATE******* */
 
   app.put("/api/update", (req, res) => {
     console.log("User Data:");
-    db.User.update({
+    const userInfo = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
       size: req.body.size,
-      type: req.body.type,
       password: req.body.passwordNew,
-    },
-      {
-        where: {
-          email: req.body.email
-        },
-      }).then((results) => {
-        console.log(results)
-        res.json(results);
-      });
+      type: req.body.type
+    }
+    bcrypt.hash(req.body.password, 10, (error, hash) => {
+      userInfo.password = hash
+      db.User.update({
+        userInfo
+      },
+        {
+          where: {
+            email: req.body.email
+          },
+        }).then((results) => {
+          console.log(results)
+          res.json(results);
+        }).catch(error)
+      res.json(error)
+    })
+
   });
 
-////////////////////////////
+  ////////////////////////////
 
   app.delete("/api/delete", (req, res) => {
     console.log("Garment Data:");
