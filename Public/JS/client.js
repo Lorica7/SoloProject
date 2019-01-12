@@ -15,7 +15,7 @@ $(document).ready(function () {
 
     $.post("/api/register", newUser)
       .then(function (data) {
-        
+        $("#confirmModal").modal('show');
         console.log(newUser);
         $("#firstName").val("");
         $("#lastName").val("");
@@ -50,9 +50,19 @@ $(document).ready(function () {
         method: "PUT",
         url: "/api/update",
         data: updateUser
-      }).then(console.log(updateUser));
-    }
-
+      }).then((res, err) => {
+        console.log(res)
+        const items = $(`<div class=userInfo>`)
+        const email = $(`<h4>`).text(res.email)
+        const fName = $(`<h4>`).text(res.firstName)
+        const lName = $(`<h4>`).text(res.lastName)
+        const size = $(`<h4>`).text(res.size)
+        const type = $(`<h4>`).text(res.type)
+        $("#updateInfo").append(items, email, fName, lName, size, type)
+    }).catch((err) =>{
+      console.log(err);
+     });
+  }
     updateFunc(updateUser);
 
     $("#firstName").val("");

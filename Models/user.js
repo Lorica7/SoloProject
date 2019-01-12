@@ -23,11 +23,5 @@ var User= sequelize.define("User", {
   savedData: DataTypes.TEXT
 });
 
-// User.associate = function(models) {
-  
-//   Author.hasMany(models.Garments, {
-//     onDelete: "cascade"
-//   });
-// }
 return User;
 };

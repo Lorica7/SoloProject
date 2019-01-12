@@ -22,13 +22,7 @@ module.exports = function (app) {
         const errors = req.validationErrors();
         if (errors) {
             console.log(`errors: ${JSON.stringify(errors)}`);
-
-            res.render('register',
-                {
-                    title: "Registration Error",
-                    errors: errors
-                });
-
+            res.JSON(errors);
         } else {
 
             const userInfo = {

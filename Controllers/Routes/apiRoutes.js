@@ -67,7 +67,6 @@ module.exports = function (app) {
 
   app.put("/api/update", (req, res) => {
     console.log("User Data:");
-    console.log(req.body);
     db.User.update({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -81,6 +80,7 @@ module.exports = function (app) {
           email: req.body.email
         },
       }).then((results) => {
+        console.log(results)
         res.json(results);
       });
   });

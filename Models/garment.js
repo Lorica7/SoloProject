@@ -8,13 +8,6 @@ module.exports = function (sequelize, DataTypes) {
     email: DataTypes.STRING
   });
 
-  // Garment.associate = function (models) {
-  //   models.Garment.belongsTo(models.User, {
-  //     onDelete: "CASCADE",
-  //     foreignKey: {
-  //       allowNull: false
-  //     }
-  //   });
   return Garment;
 };
 
