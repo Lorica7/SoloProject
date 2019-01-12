@@ -1,5 +1,4 @@
 
-// Contextual Web
 $(document).ready(function () {
 
     $("#search").on("click", function (event) {
@@ -20,19 +19,23 @@ $(document).ready(function () {
                     "email" : email
                 }
             }).then(function (response, err) {
-                const email = $('#emailSearch').val();
                console.log(response);
+               console.log(email);
                 for (var i = 0; i < response.length; i++) {
 
-                    const items = $(`<div class=groupItems id=${email}>`)
-                     const garmentImages = $("<img>").attr("src", response[i].pagemap.cse_thumbnail[0].src)
-                    const garmentName = $(`<h1 class=gar-res${[i]}>`).text(response[i].title);
-                    const save = $("<button class=btn btn-info btn-sm id=saveGar>").text("Save").attr("style", "width: 100px;" )
-                $("#clothes-results").append(items, garmentImages, garmentName, save);
+                   
+                    const save = $(`<button class=btn btn-info btn-sm id=saveGar>`).text("Save").attr("style", "width: 100px;" ).attr("class", `items${[i]}`)
+                    const garmentImages = $(`<img class=items${[i]}>`).attr("src", response[i].pagemap.cse_thumbnail[0].src).attr("style", "display: block; margin-left: auto; margin-right: auto; clear: none;")
+                    const garmentName = $(`<h1 id=gar-res${[i]}>`).attr("class", `items${[i]}`).text(response[i].title).attr("style", "text-align:center;")
+                   
+                $("#clothes-results").append( save, garmentImages, garmentName, );
                 }
                 for (let i = 0; i < response.length; i++) {
                     const linkText = response[i].link
-                    $(`.gar-res${[i]}`).wrap((`<a href= ${linkText}></a>`))
+                    $(`#gar-res${[i]}`).wrap((`<a href= ${linkText} class=items${[i]}></a>`))
+                }
+                for (let i = 0; i < response.length; i++){
+                    $(`.items${[i]}`).wrap(`<div class=groupItems${[i]} ${email} style=margin-top: 25px;></div>`)
                 }
               }).catch((error) =>{
                console.log(error);
