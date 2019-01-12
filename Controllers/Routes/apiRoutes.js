@@ -1,56 +1,35 @@
 var db = require("../../Models");
-
 const axios = require("axios");
-
 const gKey = process.env.GOOGLE_KEY
-
 const cseCode = process.env.GOOGLE_CSE_KEY
-
-
 module.exports = function (app) {
-
-
   // ***********SIGN-IN ********
-
-  // *********** C *************
 
   app.post("/api/user/:email", (req, res) => {
 
     let logging = {
       email: req.body.email,
     }
-
-    db.User.findOne({
+    db.User.findAll({
       where: {
         email: req.params.email,
-        password: req.params.password
       }
-    }).catch((error) => {
-      res.json(error);
-    })
-      .then((logging) => {
-        db.LogIn.create({
-          email: logging.email,
-        })
-      })
+    }).then(
+      db.LogIn.create(logging)
+    )
       .then((results) => {
         res.json(results)
       })
-        .catch((error) => {
-          res.json(error);
-        })
-
-    })
+      .catch((error) => {
+        res.json(error);
+      })
+  })
 
   // ********GARMENT FETCHING***********
-
-  // ************* R **************
   app.get("/api/garments", function (req, res) {
     db.Garment.findAll({})
       .then((results) => { res.json(results); });
   });
-
-  
 
   app.get("/api/garments/kind", (req, res) => {
     db.Garment.findAll({
@@ -64,20 +43,17 @@ module.exports = function (app) {
     });
   });
 
-
   // ******** EXTERNAL DATA FETCHING VIA AXIOS.GET *******
-  // ******** Possibly  C, could be R ***************
+ 
   app.post("/api/garments/search", function (req, res) {
 
     let cType = req.body.garments;
     let color = req.body.color;
-    
     console.log(cType)
     axios
       .get(`https://www.googleapis.com/customsearch/v1?key=${gKey}&cx=${cseCode}&q=${cType}&petite}&${color}&exactTerms={petite?}&exactTerms={cse_thumbnail}`
       )
       .then(function (response) {
-      
         console.log(response.data.items);
         let newData = response.data.items;
         res.json(newData)
@@ -87,9 +63,7 @@ module.exports = function (app) {
       });
   })
 
-
-
-  // ***** U ******* D *******
+//********UPDATE******* */
 
   app.put("/api/update", (req, res) => {
     console.log("User Data:");
@@ -111,6 +85,7 @@ module.exports = function (app) {
       });
   });
 
+////////////////////////////
 
   app.delete("/api/delete", (req, res) => {
     console.log("Garment Data:");
@@ -123,21 +98,5 @@ module.exports = function (app) {
       res.json(results);
     });
   });
-
-
 }
 
-
-  // app.get("/api/user/:email", function (req, res) {
-  //   db.User.findAll({
-  //       where: {
-  //           email: req.params.email
-  //       }
-  //   }) 
-  //       .then(email => {
-  //           if (!email) {
-  //               console.log(error)
-  //           } else {
-  //           } res.redirect('/search');
-
-  //

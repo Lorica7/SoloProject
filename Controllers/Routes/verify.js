@@ -83,8 +83,6 @@ module.exports = function (app) {
                 id: user_id
             }
         })
-
     });
-
 };
 

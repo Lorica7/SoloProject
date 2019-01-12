@@ -25,10 +25,11 @@ $(document).ready(function () {
                 const msgF = $("<h5 class=groupItems>").text("Your email or password is incorrect")
                 $("#signArea").append(msgF)
             });
-            getEmail(signersIn);
+           
             $("#emailSign").val("");
             $("#passSign").val("");
         };
+        getEmail(signersIn);
         return signersIn
     });
 
