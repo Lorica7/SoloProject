@@ -50,9 +50,10 @@ module.exports = function (app) {
 
     let cType = req.body.garments;
     let color = req.body.color;
+    let option = req.body.option;
     console.log(cType)
     axios
-      .get(`https://www.googleapis.com/customsearch/v1?key=${gKey}&cx=${cseCode}&q=${cType}&petite}&${color}&exactTerms={petite?}&exactTerms={cse_thumbnail}`
+      .get(`https://www.googleapis.com/customsearch/v1?key=${gKey}&cx=${cseCode}&q=${cType}&petite}&${color}&${option}&exactTerms={petite?}&exactTerms={cse_thumbnail}`
       )
       .then(function (response) {
         console.log(response.data.items);
