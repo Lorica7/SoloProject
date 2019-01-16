@@ -26,6 +26,8 @@ module.exports = function (app) {
       })
   })
 
+
+
   // ********GARMENT FETCHING***********
   app.get("/api/garments", function (req, res) {
     db.Garment.findAll({})
@@ -64,6 +66,16 @@ module.exports = function (app) {
         console.log(error);
       });
   })
+
+  //*****************Saving Results *******************/
+
+  app.post("/api/garments/save", (req, res)=>{
+
+    db.Garment.create(req.body).then(function(dbExample) {
+      res.json(dbExample);
+    });
+  });
+
 
   //********UPDATE******* */
 

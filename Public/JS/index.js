@@ -1,7 +1,5 @@
 $(document).ready(function () {
 
-
-
     $("#signersIn").on("click", function (event) {
         event.preventDefault();
         console.log("Listening")
@@ -53,9 +51,6 @@ $(document).ready(function () {
                 $("#signArea").append(msg)
             });
             getRes(signersIn);
-
-
         }
     })
-
 })
