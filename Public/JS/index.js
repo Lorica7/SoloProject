@@ -38,7 +38,7 @@ $(document).ready(function () {
         event.preventDefault();
         console.log("Listener Works")
 
-        var getResults = () => {
+        var getRes = () => {
             $.ajax({
                 method: "POST",
                 url: "/api/user/:email",
@@ -52,7 +52,7 @@ $(document).ready(function () {
                 const msg = $("<h5 class=groupItems>").text("Your email or password is incorrect")
                 $("#signArea").append(msg)
             });
-            getEmail(signersIn);
+            getRes(signersIn);
 
 
         }
