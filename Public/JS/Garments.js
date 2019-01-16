@@ -23,6 +23,8 @@ $(document).ready(function () {
             }).then(function (response, err) {
                 console.log(response);
                 console.log(email);
+
+                
                 for (var i = 0; i < response.length; i++) {
                    
                     const save = $(`<button class=btn btn-info btn-sm id=saveGar>`).text("Save").attr("style", "width: 100px;").attr("class", `items${[i]}`)
@@ -33,7 +35,7 @@ $(document).ready(function () {
                 }
                 for (let i = 0; i < response.length; i++) {
                     const linkText = response[i].link
-                    $(`#gar-res${[i]}`).wrapAll((`<a href= ${linkText} class=items${[i]}>Check It Out!</a>`))
+                    $(`#gar-res${[i]}`).wrapAll((`<a href= ${linkText} class=items${[i]} target="_blank" >Check It Out!</a>`))
                     $ (`.items${[i]}`).wrapAll(`<div class=groupItems${[i]} ${email} style=margin-top: 30px; margin-bottom: 30px;></div>`) 
                 }
                

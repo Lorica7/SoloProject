@@ -1,20 +1,18 @@
-$(document).ready(function () {
+// $(document).ready(function () {
 
-    $(".items0").on("click", function (event) {
+    $("#saveGar").on("click", function (event) {
         event.preventDefault();
         console.log("Listener Works")
 
-
         const newGar = {
-            title: DataTypes.STRING,
-            link: DataTypes.STRING,
-            image_link: DataTypes.INTEGER,
-            email: DataTypes.STRING
-
-
+            title: $('#gar-res0').text(),
+            link: $('a.items0').attr("href").text(),
+            image_link: $("img.items0").attr("src").text(),
+            email: $("div.groupItems0").prop().text()
         }
 
+            console.log(newGar);
 
 
     })
-})
+// });
