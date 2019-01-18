@@ -83,6 +83,8 @@ $(document).ready(function () {
                 }).then(function (response, err) {
                     console.log(response);
                     console.log("Successfully Saved")
+                    const msg = $(`<p>`).text(`Item(s) have been saved.`);
+                    $('#confirmSave').append(msg);
                 }).catch((err) => {
                     console.log(err);
                 })

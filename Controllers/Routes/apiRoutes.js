@@ -14,7 +14,9 @@ module.exports = function (app) {
     db.User.findAll({
       where: {
         email: req.params.email,
+
       }
+     
     }).then(
       db.LogIn.create(logging)
     )
@@ -28,7 +30,7 @@ module.exports = function (app) {
 
 
 
-  // ********GARMENT FETCHING***********
+  // ********GARMENT Retrieval***********
   app.get("/api/garments", function (req, res) {
     db.Garment.findAll({})
       .then((results) => { res.json(results); });
@@ -37,8 +39,8 @@ module.exports = function (app) {
   app.get("/api/garments/kind", (req, res) => {
     db.Garment.findAll({
       where: {
-        kind: {
-          kind: req.params.kind
+        type: {
+          type: req.params.type
         }
       },
     }).then((results) => {
@@ -46,7 +48,19 @@ module.exports = function (app) {
     });
   });
 
-  // ******** EXTERNAL DATA FETCHING VIA AXIOS.GET *******
+  app.get("/api/garments/email", (req, res) => {
+    db.Garment.findAll({
+      where: {
+        type: {
+          type: req.params.email
+        }
+      },
+    }).then((results) => {
+      res.json(results);
+    });
+  });
+
+  // ******** EXTERNAL DATA Retrieving VIA AXIOS.GET *******
 
   app.post("/api/garments/search", function (req, res) {
 

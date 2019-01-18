@@ -13,8 +13,13 @@ $(document).ready(function () {
       type: $("#type").val().trim()
     };
 
-    $.post("/api/register", newUser)
-      .then(function (data) {
+    $.ajax({
+      method: "POST",
+      url: "/api/register",
+      data: newUser
+       })
+      .then((res, err) => {
+       
         $("#confirmModal").modal('show');
         console.log(newUser);
         $("#firstName").val("");
@@ -24,10 +29,10 @@ $(document).ready(function () {
         $("#type").val("");
         const msg = $("<h5 class=groupItems>").text("");
         $("#errorMsg").append(msg)
-      }).catch((error) => {
+      }).catch((err) => {
         $("#confirmModal").modal('hide');
-        console.log(error);
-        const msgError = $("<h5 class=groupItems>").text("Please make sure your email and password are formatted correctly")
+        console.log(err);
+        const msgError = $("<h5 class=groupItems>").text("Please make sure your email and password are formatted correctly.")
         $("#errorMsg").append(msgError)
       });
   })
