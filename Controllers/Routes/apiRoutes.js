@@ -16,7 +16,7 @@ module.exports = function (app) {
         email: req.params.email,
 
       }
-     
+
     }).then(
       db.LogIn.create(logging)
     )
@@ -27,8 +27,6 @@ module.exports = function (app) {
         res.json(error);
       })
   })
-
-
 
   // ********GARMENT Retrieval***********
   app.get("/api/garments", function (req, res) {
@@ -83,9 +81,9 @@ module.exports = function (app) {
 
   //*****************Saving Results *******************/
 
-  app.post("/api/garments/save", (req, res)=>{
+  app.post("/api/garments/save", (req, res) => {
 
-    db.Garment.create(req.body).then(function(dbExample) {
+    db.Garment.create(req.body).then(function (dbExample) {
       res.json(dbExample);
     });
   });
@@ -94,29 +92,37 @@ module.exports = function (app) {
   //********UPDATE******* */
 
   app.put("/api/update", (req, res) => {
-    console.log("User Data:");
+ 
     const userInfo = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
       size: req.body.size,
-      password: req.body.passwordNew,
+      passwordNew: req.body.passwordNew,
       type: req.body.type
     }
-    bcrypt.hash(req.body.password, 10, (error, hash) => {
-      userInfo.password = hash
+    bcrypt.hash(req.body.passwordNew, 10, (error, hash) => {
+      userInfo.passwordNew = hash
+
       db.User.update({
-        userInfo
+      firstName: userInfo.firstName,
+      lastName: userInfo.lastName,
+      email: req.body.email,
+      size: userInfo.size,
+      passwordNew: userInfo.passwordNew,
+      type: userInfo.type
+       
       },
         {
           where: {
             email: req.body.email
           },
-        }).then((results) => {
+        })
+        .then((results) => {
           console.log(results)
           res.json(results);
         }).catch(error)
-      res.json(error)
+      console.log(error)
     })
 
   });

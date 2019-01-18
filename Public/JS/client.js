@@ -57,17 +57,17 @@ $(document).ready(function () {
         method: "PUT",
         url: "/api/update",
         data: updateUser
-      }).then((res, err) => {
-        console.log(res)
+      }).then((results, error) => {
+        console.log(results)
         const items = $(`<div class=userInfo>`)
-        const email = $(`<h4>`).text(updateUser.email)
-        const fName = $(`<h4>`).text(updateUser.firstName)
-        const lName = $(`<h4>`).text(updateUser.lastName)
-        const size = $(`<h4>`).text(updateUser.size)
-        const type = $(`<h4>`).text(updateUser.type)
+        const email = $(`<h4>`).text(`Email:${updateUser.email}`)
+        const fName = $(`<h4>`).text(`First Name:${updateUser.firstName}`)
+        const lName = $(`<h4>`).text(`Last Name: ${updateUser.lastName}`)
+        const size = $(`<h4>`).text(`Size Preference: ${updateUser.size}`)
+        const type = $(`<h4>`).text(`Type Preference: ${updateUser.type}`)
         $("#updateInfo").append(items, email, fName, lName, size, type)
-    }).catch((err) =>{
-      console.log(err);
+    }).catch((error) =>{
+      console.log(error);
      });
   }
     updateFunc(updateUser);
