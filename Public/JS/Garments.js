@@ -90,9 +90,36 @@ $(document).ready(function () {
                 })
 
             };
-                garSave(dbObj);
+            garSave(dbObj);
         };
     });
+
+    $("#savedResults").on("click", function (event) {
+        event.preventDefault();
+        console.log("Basics are working....")
+
+       
+          var email = $("#emailRes").val().trim();
+        
+
+        const getResults = (email) => {
+            $.ajax({
+                method: "GET",
+                url: "/api/garments/" + email
+              
+            }).then((results, error) => {
+                console.log(results)
+                // const rTitle = $(`<div class=userInfo>`)
+                // const rLink =
+                // const rlinkRes =
+                // const rType =
+            })
+
+        }
+
+        getResults(email);
+    });
+
 });
 
 

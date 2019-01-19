@@ -14,9 +14,7 @@ module.exports = function (app) {
     db.User.findAll({
       where: {
         email: req.params.email,
-
       }
-
     }).then(
       db.LogIn.create(logging)
     )
@@ -29,30 +27,23 @@ module.exports = function (app) {
   })
 
   // ********GARMENT Retrieval***********
-  app.get("/api/garments", function (req, res) {
-    db.Garment.findAll({})
-      .then((results) => { res.json(results); });
-  });
-
+ 
   app.get("/api/garments/kind", (req, res) => {
     db.Garment.findAll({
       where: {
-        type: {
-          type: req.params.type
-        }
-      },
+          type: req.body.type
+      }
     }).then((results) => {
       res.json(results);
     });
   });
 
-  app.get("/api/garments/email", (req, res) => {
+  app.get("/api/garments/:email", (req, res) => {
+    console.log(req);
     db.Garment.findAll({
       where: {
-        type: {
-          type: req.params.email
-        }
-      },
+          email: req.params.email
+      }
     }).then((results) => {
       res.json(results);
     });

@@ -1,19 +1,19 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+
     <title>My Closet</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Cormorant|Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="../Public/css/main.css">
-    
-   
+
+
 </head>
+
 <body>
     <div id="home">
         <div class="container">
@@ -34,7 +34,7 @@
                 <div class="col-md">
                     <h2 id="updateForm">Update Information</h2>
                     <h4 style="text-align: center; color: black;">Please enter your registration email.</h4>
-                   
+
                     <div class="card-body">
                         <form action="" method="POST" role="form">
 
@@ -101,7 +101,38 @@
                     </div>
                 </div>
                 <div class="col-md">
-                    <h2 id="updateInfo">Updated Information:</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="getEmail">Email address</label>
+                            <input type="email" class="form-control" id="getCurrent" placeholder="name@example.com">
+                        </div>
+                    </form>
+                    <div class="row">
+                        <button type="button" class="btn btn-info btn-lg btn-block">Current Information</button>
+                        
+                    </div>
+                    <div class="row" id="updateInfo">
+
+
+                        </div>
+                    <div class="row" style="margin-top: 40%;">
+                        <form>
+                            <div class="form-group">
+                                <label for="savedResults">Email address</label>
+                                <input type="email" class="form-control" id="emailRes" placeholder="name@example.com">
+                            </div>
+                        </form>
+                        <div class="row">
+                            <button type="submit" class="btn-block btn-info btn-lg btn-block" value="input" id="savedResults">See
+                                Saved Search Results</button>
+
+                        </div>
+                    </div>
+                    <div class="row" id="attachResults">
+
+
+
+                    </div>
                 </div>
 
             </div>
@@ -110,14 +141,16 @@
     </div>
 
 
-	</body>
-    <script src="https://code.jquery.com/jquery.js" ></script>
-    <script type="text/javascript" src="../Public/JS/client.js" async></script>
-    <script type="text/javascript" src="../Public/JS/index.js" async></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" async></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous" async></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous" async></script>
-    </html>
+</body>
+<script src="https://code.jquery.com/jquery.js"></script>
+<script type="text/javascript" src="../Public/JS/client.js" async></script>
+<script type="text/javascript" src="../Public/JS/Garments.js" async></script>
+<script type="text/javascript" src="../Public/JS/index.js" async></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" async></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous" async></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous" async></script>
+
+</html>

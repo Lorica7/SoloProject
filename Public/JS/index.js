@@ -1,7 +1,6 @@
 $(document).ready(function () {
-
     $("#signersIn").on("click", function (event) {
-         event.preventDefault();
+        event.preventDefault();
         console.log("Listening")
 
         let signersIn = {
@@ -16,11 +15,12 @@ $(document).ready(function () {
                 data: signersIn
             }).then(function (res) {
                 console.log(res)
-                const msgS = $("<h5 class=groupItems>").text("You successfully signed in")
+                const msgS = $("<h5 class=groupItems>").text("You successfully signed in.")
                 $("#signArea").append(msgS)
+               window.location.href = "/search";
             }).catch((error) => {
                 console.log(error);
-                const msgF = $("<h5 class=groupItems>").text("Your email or password is incorrect")
+                const msgF = $("<h5 class=groupItems>").text("Your email or password is incorrect.")
                 $("#signArea").append(msgF)
             });
            
