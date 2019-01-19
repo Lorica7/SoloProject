@@ -1,4 +1,8 @@
 $(document).ready(function () {
+
+    ///// Sign - in just gathers email records. It DOES not verify username and passwords. It currently does
+    ///// not start sessions or play any role in route protection. I would have taken too long to learn and do alone.
+
     $("#signersIn").on("click", function (event) {
         event.preventDefault();
         console.log("Listening")

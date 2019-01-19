@@ -1,5 +1,5 @@
 
-//Saving Client and Saving Garments
+//     ***********************      Saving New Client  *************
 $(document).ready(function () {
 
   $("#createUser").on("click", function (event) {
@@ -36,6 +36,8 @@ $(document).ready(function () {
         $("#errorMsg").append(msgError)
       });
   })
+
+  //     ***********************      UPDATE Client  *************
 
   $("#updateUser").on("click", function (event) {
     event.preventDefault();

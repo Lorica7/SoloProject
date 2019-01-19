@@ -1,7 +1,11 @@
 
 $(document).ready(function () {
 
-    $("#search").on("click", function (event) {
+    // ***************        Searching with custom Google Search    *************///
+    // *************** Almost nothing was publicly available for  clothing searches. APIs had applications, price tags, or required that you be a business partner. *************///////
+// ************ Google CSE represents what I would like to be able to do, with access to APIs from multiple brands. Currently, the search engine alone does not return specific enough results
+  
+$("#search").on("click", function (event) {
         event.preventDefault();
         console.log("Listener Works")
 
@@ -65,6 +69,7 @@ $(document).ready(function () {
         $('#optionSearch').val("");
         $('#garmentSearch').val("Choose...");
 
+///////////// *******      Saving a Result to DB ***********   //////////////
 
         function gatherInfo(gTitle, linkText, gImage, gEmail, type) {
 
@@ -93,6 +98,8 @@ $(document).ready(function () {
             garSave(dbObj);
         };
     });
+
+    ////////////// ***************   Pulling Saved Results from DB **************////////
 
     $("#savedResults").on("click", function (event) {
         event.preventDefault();

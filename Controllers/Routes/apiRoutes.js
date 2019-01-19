@@ -4,7 +4,8 @@ const bcrypt = require('bcrypt')
 const gKey = process.env.GOOGLE_KEY
 const cseCode = process.env.GOOGLE_CSE_KEY
 module.exports = function (app) {
-  // ***********SIGN-IN ********
+  
+  // ***********       SIGN-IN          ********
 
   app.post("/api/user/:email", (req, res) => {
 
@@ -26,7 +27,7 @@ module.exports = function (app) {
       })
   })
 
-  // ********GARMENT Retrieval***********
+  // ***************         GARMENT Retrieval            ***********
  
   app.get("/api/garments/kind", (req, res) => {
     db.Garment.findAll({
@@ -49,7 +50,7 @@ module.exports = function (app) {
     });
   });
 
-  // ******** EXTERNAL DATA Retrieving VIA AXIOS.GET *******
+  // ********        Retrieving EXTERNAL data  via AXIOS       *******
 
   app.post("/api/garments/search", function (req, res) {
 
@@ -70,7 +71,7 @@ module.exports = function (app) {
       });
   })
 
-  //*****************Saving Results *******************/
+  //*****************       Saving Results        **************/
 
   app.post("/api/garments/save", (req, res) => {
 
@@ -80,7 +81,7 @@ module.exports = function (app) {
   });
 
 
-  //********UPDATE******* */
+  //********       UPDATE        *********/
 
   app.put("/api/update", (req, res) => {
  
@@ -118,7 +119,7 @@ module.exports = function (app) {
 
   });
 
-  ////////////////////////////
+  ///////////*********      Delete   ************ *//////////////////
 
   app.delete("/api/delete", (req, res) => {
     console.log("Garment Data:");
