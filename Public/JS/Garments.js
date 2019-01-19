@@ -97,29 +97,38 @@ $(document).ready(function () {
     $("#savedResults").on("click", function (event) {
         event.preventDefault();
         console.log("Basics are working....")
-
-       
-          var email = $("#emailRes").val().trim();
         
 
+        var email = $("#emailRes").val().trim();
         const getResults = (email) => {
             $.ajax({
                 method: "GET",
                 url: "/api/garments/" + email
-              
-            }).then((results, error) => {
-                console.log(results)
-                // const rTitle = $(`<div class=userInfo>`)
-                // const rLink =
-                // const rlinkRes =
-                // const rType =
+
+            }).then((res, error) => {
+                 console.log(res);
+
+                   for (var i = 0; i < res.length; i++) {
+
+                    const rTitle = $(`<h1 id=itemTitle${[i]}>`).text(res[i].title)
+                    const rImage = $("<img/>").attr("src", res[i].image_link)
+                    const rLink = $("<p>").text(res[i].link)
+                    const rType = $("<h4>").text(res[i].type)
+
+                    $("#attachResults").append(rTitle, rImage, rLink, rType);
+                }
+             
+            }).catch((error) => {
+                console.log(error);
             })
-
-        }
-
+        };
         getResults(email);
+       
+
     });
 
 });
 
 
+
+  
