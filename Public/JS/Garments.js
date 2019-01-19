@@ -49,11 +49,13 @@ $("#search").on("click", function (event) {
                         event.preventDefault();
                         event.stopPropagation();
                         console.log("Yayyyyy!")
+                       
 
                         const gTitle = response[i].title
                         const gImage = response[i].pagemap.cse_thumbnail[0].src
                         const gEmail = email
                         const type = garments
+                        
 
                         gatherInfo(gTitle, linkText, gImage, gEmail, type);
                     })
@@ -90,6 +92,7 @@ $("#search").on("click", function (event) {
                     console.log("Successfully Saved")
                     const msg = $(`<p>`).text(`Item(s) have been saved.`);
                     $('#confirmSave').append(msg);
+                    alert("You're item has been saved.")
                 }).catch((err) => {
                     console.log(err);
                 })
@@ -117,7 +120,7 @@ $("#search").on("click", function (event) {
 
                    for (var i = 0; i < res.length; i++) {
 
-                    const rTitle = $(`<h1 id=itemTitle${[i]}>`).text(res[i].title)
+                    const rTitle = $(`<h3 id=itemTitle${[i]}>`).text(res[i].title)
                     const rImage = $("<img/>").attr("src", res[i].image_link)
                     const rLink = $("<p>").text(res[i].link)
                     const rType = $("<h4>").text(res[i].type)
